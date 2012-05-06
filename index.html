@@ -28,14 +28,12 @@ window.onload = function () {
 	r.text(160, 10, "Users Who Listen to Shows Via Podcast").attr(txtattr);
 	// axis=r.g.axis(40,230,300,0,400,10,2);
 	// axis.text.attr({font:"9px Arial", fill:"#888", "font-weight": "regular", "color": "#ff0000", "fill": "#ff0000"});
-	// alert('something is happening');  
-    $(chart1).each(function(){
-		this
-		.hover()
-		.click(function(){
-			this.remove();
+	// alert('something is happening');
+
+    $(this).click(function(){
+		chart1.remove();
+		var chart2= r.barchart(10,30, 500,350, [smartphone]);
 		});
-	});
 
 	// chart1.onclick(alert('something is happening'));  
 };
