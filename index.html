@@ -21,18 +21,30 @@ window.onload = function () {
 	var txtattr={font:"1em Arial", fill:"#888", "font-weight": "bold", "color": "#363942", "fill": "#363942"};
 	// x, y, width, height
 	var chart1= r.barchart(10, 40, 500, 350, [podcast]).attr({"fill":"#363942"});
-	chart1.click() {
-		this.remove;
-		chart2= r.barchart(10,30, 500,350, [smartphone]);
-	 };
+
 	// var chart2= r.barchart(10,30, 500,350, [smartphone]);
 	// var chart3= r.barchart(10,30, 500,350, [streaming]).attr({"fill":"#382513"});
 	// var chart4= r.barchart(10,30, 500,350, [radio]).attr({"fill":"#284907"});
 	r.text(160, 10, "Users Who Listen to Shows Via Podcast").attr(txtattr);
-	r.animate
-	axis=r.g.axis(40,230,300,0,400,10,2);
-	axis.text.attr({font:"9px Arial", fill:"#888", "font-weight": "regular", "color": "#ff0000", "fill": "#ff0000"});
+	// axis=r.g.axis(40,230,300,0,400,10,2);
+	// axis.text.attr({font:"9px Arial", fill:"#888", "font-weight": "regular", "color": "#ff0000", "fill": "#ff0000"});
+	// alert('something is happening');  
+    $(chart1).each(function(){
+		this
+		.hover()
+		.click(function(){
+			this.remove();
+		});
+	});
+
+	// chart1.onclick(alert('something is happening'));  
 };
+	// var clickHandler= function(){
+	// 	this.remove;
+	// };
+	// $(chart1.node).click(clickHandler);
+    // alert('something is happening');  
+		
 </script>
 <!-- {
 "Age Range":["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older","Total"],
