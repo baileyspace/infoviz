@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Anne and Bailey Information Visualization Final Project</title>
+  <meta name="description" content="A review of informal survey data on the use of technology and public radio.">
+  <link rel="stylesheet" href="css/style.css">
+
+<script src="js/libs/modernizr-2.5.3.min.js"></script>
+<script src="js/libs/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/libs/raphael.js"></script>
+<script src="js/libs/g.raphael.js"></script>
+<script src="js/libs/g.bar.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+window.onload = function () {
+	var podcast=[2,6,8,8,9,6,2,2,0,3];
+	var smartphone=[0,4,2,4,6,2,1,0,0,1];
+	var streaming=[0,5,13,11,8,3,3,1,0,1];
+	var radio=[0,7,10,12,9,12,5,3,4,11];
+	var axisx=["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older"];
+    var r = Raphael("listen_habits");
+	var txtattr={font:"1em Arial", fill:"#888", "font-weight": "bold", "color": "#363942", "fill": "#363942"};
+		// x, y, width, height
+	var chart1= r.barchart(10, 40, 500, 350, [podcast]).attr({"fill":"#363942"});
+	
+	chart1.click = function() {
+		this.remove;
+		chart2= r.barchart(10,30, 500,350, [smartphone]);
+	};
+	// var chart2= r.barchart(10,30, 500,350, [smartphone]);
+	// 	var chart3= r.barchart(10,30, 500,350, [streaming]).attr({"fill":"#382513"});
+	// 	var chart4= r.barchart(10,30, 500,350, [radio]).attr({"fill":"#284907"});
+		r.text(160, 10, "Users Who Listen to Shows Via Podcast").attr(txtattr);
+		r.animate
+		axis=r.g.axis(40,230,300,0,400,10,2);
+		axis.text.attr({font:"9px Arial", fill:"#888", "font-weight": "regular", "color": "#ff0000", "fill": "#ff0000"});
+        
+	};
+
+</script>
+
+<!-- {
+  "Age Range":["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older","Total"],
+  "Listens to shows via podcast downloads":[2,6,8,8,9,6,2,2,0,3,48],
+  "Listens to shows via smartphone applications":[0,4,2,4,6,2,1,0,0,1,20],
+  "Listens to shows via online streaming":[0,5,13,11,8,3,3,1,0,1,44],
+  "Listens to shows via radio":[0,7,10,12,9,12,5,3,4,11,73]
+} -->
+
+</head>
+
+<body>
+  <div id="listen_habits">
+	<p></p>
+  </div>
+
+</body>
+</html>

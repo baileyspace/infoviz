@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Anne and Bailey Information Visualization Final Project</title>
+  <meta name="description" content="A review of informal survey data on the use of technology and public radio.">
+  <link rel="stylesheet" href="css/style.css">
+
+<script src="js/libs/modernizr-2.5.3.min.js"></script>
+<script src="js/libs/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/libs/raphael.js"></script>
+<script src="js/libs/g.raphael.js"></script>
+<script src="js/libs/g.pie.js"></script>
+<script>
+window.onload = function () {
+    var r = Raphael("popshows", 300,300),
+        pie = r.piechart(320, 240, 100, [17,11,14,30,16,7,9,3,4,3,9,5,2,6,3,2,3,2]
+		, { legend: ["All Things Considered %%","NPR Fresh Air %%","Radiolab %%","This American Life %%","Wait Wait Don't Tell Me %%","Science Friday %%","Car Talk %%","NPR's Marketplace %%","Prairie Home Companion %%","Splendid Table %%","Morning Edition %%","Diane Rehm %%","Money Talk %%","Planet Money %%","The Moth %%","KCRW - Morning Becomes Eclectic %%","PRI's The World %%","Madeline Brand Show %%"], legendpos: "west", href: ["http://raphaeljs.com", "http://g.raphaeljs.com"]});
+
+    r.text(320, 100, "Most Popular Public Radio Programs").attr({ font: "20px sans-serif" });
+    pie.hover(function () {
+        this.sector.stop();
+        this.sector.scale(1.1, 1.1, this.cx, this.cy);
+
+        if (this.label) {
+            this.label[0].stop();
+            this.label[0].attr({ r: 7.5 });
+            this.label[1].attr({ "font-weight": 800 });
+        }
+    }, function () {
+        this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
+
+        if (this.label) {
+            this.label[0].animate({ r: 5 }, 500, "bounce");
+            this.label[1].attr({ "font-weight": 400 });
+        }
+    });
+
+	// var commute=Raphael('commute'),
+	// rectangle=r.barchart(10,10,300,220[32,35,22,4]{
+	// 	
+	// });
+};
+
+</script>
+</head>
+
+<body>
+  <div id="popshows">
+  </div>
+
+	<div id="commute">
+	</div>
+
+</body>
+</html>
