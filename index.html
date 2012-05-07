@@ -16,6 +16,7 @@
 
 <script>	
 window.onload= function () {
+// Listener Habits
 	// Data
 	var podcast=[2,6,8,8,9,6,2,2,0,3];
 	var smartphone=[0,4,2,4,6,2,1,0,0,1];
@@ -106,7 +107,7 @@ window.onload= function () {
 			r.barchart(10,30, 500,350, [smartphone]).attr({"fill":"#F5E9AE", "opacity": .6});
 		}
 	});		
-
+// Popular Shows
 	    var p = Raphael("popshows"),
 	        pie = p.piechart(320, 240, 100, [17,11,14,30,16,9]
 	    , { legend: ["All Things Considered %%","NPR Fresh Air %%","Radiolab %%","This American Life %%","Wait Wait Don't Tell Me %%","Car Talk %%"], legendpos: "east", colors: ["#FF8357", "#82220B", "#363942", "#D8CAA8", "#F5E9AE", "#209193"]}).attr({"stroke-width":3});
@@ -152,7 +153,6 @@ window.onload= function () {
 <!-- Slide 1 -->
 	    <div>
 	      <h1>LISTEN UP</h1>
-	      <div id="listen_habits"> </div>
 	      <p>There are XXX number of public radio stations in the country. 
 	      The average public radio listener is XXX years old (source: Arbitron).</p>
 	    </div>
@@ -164,6 +164,7 @@ window.onload= function () {
 	    </div>
 <!-- Slide 3 -->
 	    <div id="selection">
+			
 	      <h1>HOW DO YOU LISTEN TO PUBLIC RADIO?</h1>
 	      <p>Of the 96 respondents who listen to public radio: 46 listen via podcasts, 20 
 	listen via smartphone applications, 44 listen via online streaming, and 73 listen to live broadcasts. The responses are not mutually exclusive. Broadcast radio still dominates as the chosen method for accessing radio content.</p>
@@ -176,7 +177,6 @@ window.onload= function () {
 	</ul>
 	<div id="listen_habits">	
 	</div>
-
 	    </div>
 <!-- Slide 4 -->
 	    <div>
