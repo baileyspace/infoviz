@@ -17,11 +17,8 @@
 	var smartphone=[0,4,2,4,6,2,1,0,0,1];
 	var streaming=[0,5,13,11,8,3,3,1,0,1];
 	var radio=[0,7,10,12,9,12,5,3,4,11];
-	// Labels
-	var axisx=["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older"];
 	// create canvas
 	var r = Raphael("listen_habits");
-	// text styling	
 	var txtattr={font:"1em Arial", fill:"#888", "font-weight": "bold", "color": "#363942", "fill": "#363942"};
 	// functions for hover
 	fin = function () {
@@ -31,6 +28,9 @@
         this.flag.animate({opacity: 0}, 300, function () {this.remove();});
 	};
 	
+	// Labels
+	var axisx=["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older"];
+	
 	// Podcast Chart
 	$('a#podcastChart').click(function(){ 
 		// Barchart values are x, y, width, height
@@ -38,10 +38,12 @@
 			$('#listen_habits > svg').empty();
 			var chart1=r.barchart(10,30, 500, 350, [podcast]).attr({"fill":"#363942", "opacity": 0});
 			var chart1animate=chart1.animate({opacity: 1}, 1500 ).hover(fin,fout);
+			axisx;
 		}
 		else {
 			chart1;
 			chart1animate;
+			axisx;
 		} 
 	});
 	
@@ -62,7 +64,7 @@
 	$('a#streamingChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			chart3= r.barchart(10,30, 500,350, [streaming]).attr({"fill":"#363942", "opacity": 0});
+			chart3= r.barchart(10,30, 500,350, [streaming]).attr({"fill":"#363942", "opacity": 0,});
 			chart3animate= chart3.animate({opacity: 1}, 1500 ).hover(fin,fout); 
 		}
 		else {
@@ -99,10 +101,7 @@
 			r.barchart(10,30, 500,350, [streaming]).attr({"fill":"#D8CAA8", "opacity": .6});
 			r.barchart(10,30, 500,350, [smartphone]).attr({"fill":"#F5E9AE", "opacity": .6});
 		}
-	});
-	// My feeble attempts at labeling the axis
-	// axis=r.g.axis(40,230,300,0,400,10,2);
-	// axis.text.attr(txtattr);			
+	});		
 };		
 </script>
 	
