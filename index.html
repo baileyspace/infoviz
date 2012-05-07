@@ -12,14 +12,18 @@
 
 <script>	
  	window.onload= function () {
+	// Data
 	var podcast=[2,6,8,8,9,6,2,2,0,3];
 	var smartphone=[0,4,2,4,6,2,1,0,0,1];
 	var streaming=[0,5,13,11,8,3,3,1,0,1];
 	var radio=[0,7,10,12,9,12,5,3,4,11];
+	// Labels
 	var axisx=["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older"];
+	// create canvas
 	var r = Raphael("listen_habits");
-	var charts= [];
+	// text styling	
 	var txtattr={font:"1em Arial", fill:"#888", "font-weight": "bold", "color": "#363942", "fill": "#363942"};
+	// functions for hover
 	fin = function () {
         this.flag = r.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
     };
@@ -27,6 +31,7 @@
         this.flag.animate({opacity: 0}, 300, function () {this.remove();});
 	};
 	
+	// Podcast Chart
 	$('a#podcastChart').click(function(){ 
 		// Barchart values are x, y, width, height
 		if ($('#listen_habits > svg').children().length > 0) {
@@ -40,6 +45,7 @@
 		} 
 	});
 	
+	// Smartphone Chart
 	$('a#smartphoneChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
@@ -52,6 +58,7 @@
 		}
 	});
 	
+	// Streaming Chart
 	$('a#streamingChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
@@ -64,6 +71,7 @@
 		}
 	});
 	
+	// Radio Chart
 	$('a#radioChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
@@ -75,7 +83,8 @@
 			chart4animate; 
 		}
 	});
-		
+	
+	// All chart - which doesn't currently make a lot of sense	
 	$('a#all').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
@@ -91,20 +100,15 @@
 			r.barchart(10,30, 500,350, [smartphone]).attr({"fill":"#F5E9AE", "opacity": .6});
 		}
 	});
+	// My feeble attempts at labeling the axis
 	// axis=r.g.axis(40,230,300,0,400,10,2);
-	// axis.text.attr({font:"9px Arial", fill:"#888", "font-weight": "regular", "color": "#ff0000", "fill": "#ff0000"});			
+	// axis.text.attr(txtattr);			
 };		
 </script>
-<!-- {
-"Age Range":["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older","Total"],
-"Listens to shows via podcast downloads":[2,6,8,8,9,6,2,2,0,3,48],
-"Listens to shows via smartphone applications":[0,4,2,4,6,2,1,0,0,1,20],
-"Listens to shows via online streaming":[0,5,13,11,8,3,3,1,0,1,44],
-"Listens to shows via radio":[0,7,10,12,9,12,5,3,4,11,73]
-} -->
 	
 </head>
 <body>
+<!-- Div for the charts. This has to stay empty to work with the javascript -->
 <div id="listen_habits">
 	
 </div>
