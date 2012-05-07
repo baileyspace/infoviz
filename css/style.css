@@ -286,6 +286,12 @@ ul {
 	top:15px;
 }
 
+#search {
+	position:absolute;
+	left:294px;
+	top:15px;	
+}
+
 ul li a{
 	text-decoration: none;
 	color: black;

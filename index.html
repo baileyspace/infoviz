@@ -18,6 +18,7 @@
 
 <script>	
 window.onload= function () {
+	
 // Listener Habits
 	// Data
 	var podcast=[2,6,8,8,9,6,2,2,0,3];
@@ -108,7 +109,17 @@ window.onload= function () {
 			r.barchart(null,null, 500,350, [streaming]).attr({"fill":"#D8CAA8", "opacity": .6});
 			r.barchart(null,null, 500,350, [smartphone]).attr({"fill":"#F5E9AE", "opacity": .6});
 		}
-	});		
+	});
+
+// Our Users
+			// Data
+			var userdata=[2,12,14,16,13,15,5,4,4,11];
+			
+			// create canvas
+			var rusers = Raphael("users");
+			// functions for hover
+			var chart5=rusers.barchart(null,null, 500, 350, [userdata]).attr({"fill":"#363942"}).hover(fin,fout);
+		
 // Popular Shows
 	    var p = Raphael("popshows"),
 	        pie = p.piechart(300, 200, 125, [17,11,14,30,16,9], { legend: ["All Things Considered %%","NPR Fresh Air %%","Radiolab %%","This American Life %%","Wait Wait Don't Tell Me %%","Car Talk %%"], legendpos: "west", colors: ["#FF8357", "#82220B", "#363942", "#D8CAA8", "#F5E9AE", "#209193"]}).attr({"stroke-width":3});
@@ -127,10 +138,19 @@ window.onload= function () {
 	             this.label[1].attr({ "font-weight": 400 });
 	        }
 	    });
+	
+// Searching for Content
+//   "Particular episode":[0,6,7,5,6,4,4,2,2,3],
+//   "Particular subject":[0,2,6,3,4,4,2,3,0,5],
+//   "Similar programs":[0,2,5,0,2,3,1,0,0,1]
+	var rsearch = Raphael("search");
+    rsearch.barchart(330, 250, 300, 220, [[0,6,7,5,6,4,4,2,2,3], [0,2,6,3,4,4,2,3,0,5], [0,2,5,0,2,3,1,0,0,1]], {stacked: true, colors: ["#FF8357", "#363942","#D8CAA8"]});
 
 };
 		
+
 </script>
+
 	
 </head>
 <body>
@@ -151,7 +171,7 @@ window.onload= function () {
 	<div id="slides">
 	  <div class="slides_container">
 <!-- Slide 1 -->
-	    <div>
+	    <div id="users">
 	      <h1>LISTEN UP</h1>
 	      <p>There are XXX number of public radio stations in the country. 
 	      The average public radio listener is XXX years old (source: Arbitron).</p>
@@ -218,6 +238,7 @@ window.onload= function () {
 	      <p>63 of the 96 public radio listeners (66%) actively search for new radio content. Of the 63 who 
 	search for content, 42 searched for a particular episode, 29 searched for a particular subject, and 14 
 	searched for similar programs.</p>
+		<div id="search"></div>
 	    </div>
 <!-- Slide 8 -->
 	    <div>
