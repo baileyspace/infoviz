@@ -146,9 +146,41 @@ window.onload= function () {
 	var rsearch = Raphael("search");
     rsearch.barchart(330, 250, 300, 220, [[0,6,7,5,6,4,4,2,2,3], [0,2,6,3,4,4,2,3,0,5], [0,2,5,0,2,3,1,0,0,1]], {stacked: true, colors: ["#FF8357", "#363942","#D8CAA8"]});
 
-};
-		
+// Discover New Shows
+// 
+// "Word of mouth":[2,5,6,4,3,6,1,1,0,1],
+// "Heard the program on the radio":[0,8,6,10,6,7,5,4,3,7],
+// "Social media, iTunes, NPR website":[0,6,6,2,1,2,0,0,0,0]
 
+	var rdiscover = Raphael("discover",640, 480);
+	rdiscover.barchart(330, 250, 300, 220, [[2,5,6,4,3,6,1,1,0,1], [0,8,6,10,6,7,5,4,3,7], [0,6,6,2,1,2,0,0,0,0]], {stacked: true, colors: ["#FF8357", "#363942","#D8CAA8"]});
+
+// User Engagement
+// 	  "Age Range":["Total"],
+// 	  "Call-ins":["5"],
+// 	  "Emailed":["5"],
+// 	  "Contributed":["5"],
+// 	  "Liked":["13"]
+
+var rengage = Raphael("engagement1"),
+    engagepie = rengage.piechart(300, 200, 125, [5,5,5,13], { legend: ["Called-in %%","Emailed %%","Contributed %%","Liked %%"], legendpos: "west", colors: ["#FF8357", "#82220B", "#363942", "#D8CAA8"]}).attr({"stroke-width":3});
+engagepie.hover(function () {
+    this.sector.stop();
+    this.sector.scale(1.1, 1.1, this.cx, this.cy);
+    if (this.label) {
+         this.label[0].stop();
+         this.label[0].attr({ r: 7.5 });
+         this.label[1].attr({ "font-weight": 800 });
+    }
+}, function () {
+    this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "backIn");
+    if (this.label) {
+        this.label[0].animate({ r: 5 }, 500, "backIn");
+         this.label[1].attr({ "font-weight": 400 });
+    }
+});
+
+};
 </script>
 
 	
@@ -248,12 +280,18 @@ window.onload= function () {
 			</div>
 			<div id="popshows"></div>
 	    </div>
+	
+		<div>
+			<h1>How do you discover new shows?</h1>
+			<div id="discover"></div>
+		</div>
 <!-- Slide 9 -->
 	    <div>
 	      <h1>USER ENGAGEMENT</h1>
 	      <p>22 of 96 public radio listeners have contributed to their favorite public radio shows. An average of 5 of those 22 contributed via either call ins, emails, or by contributing pieces. The most 
 	prevalent way that respondents contribute to shows is by “liking” the program on social media (14 of 
 	22). It is possible that of the noted options (call ins, email, contributing pieces, and “liking” the program on social media), “liking” requires the least initiative — it is a relatively passive acknowledgement. </p>
+		<div id="engagement1"></div>
 	    </div>
 <!-- Slide 10 -->
 	    <div>

@@ -292,6 +292,12 @@ ul {
 	top:15px;	
 }
 
+#discover {
+	position:absolute;
+	left:103px;
+	top:-66px;	
+}
+
 ul li a{
 	text-decoration: none;
 	color: black;
