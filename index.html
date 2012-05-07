@@ -10,6 +10,8 @@
 <script src="js/libs/g.raphael-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/libs/g.bar-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/libs/g.pie-min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/libs/slides.jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/libs/slides.min.jquery.js" type="text/javascript" charset="utf-8"></script>
 
 
 <script>	
@@ -128,14 +130,43 @@ window.onload= function () {
 };
 		
 </script>
-
 	
 </head>
 <body>
-<!-- Div for the charts. This has to stay empty to work with the javascript -->
-<div id="listen_habits">	
-</div>
-<div id="selection">
+	
+	  <style type="text/css" media="screen">  
+
+	  .slides_container {
+	    width:800px;
+	  }
+	  .slides_container div {
+	    width:1000px;
+	    height:800px;
+	    display:block;
+	  }
+	</style>
+	  <div id="title"> PUBLIC RADIO LISTENER HABITS: A POP UP RADIO ARCHIVE SURVEY</div>
+	  <div id="container">
+	<div id="slides">
+	  <div class="slides_container">
+<!-- Slide 1 -->
+	    <div>
+	      <h1>LISTEN UP</h1>
+	      <div id="listen_habits"> </div>
+	      <p>There are XXX number of public radio stations in the country. 
+	      The average public radio listener is XXX years old (source: Arbitron).</p>
+	    </div>
+<!-- Slide 2 -->
+	    <div>
+	      <h1>BUT...</h1>
+	      <p>What does it mean to listen to public radio? We did a survey to explore this question further. 
+	      Admittedly, perhaps because the survey was distributed through the I School and Facebook, the average age of our respondents was younger: XXX years old. Also, 72% of our respondents were female.</p>
+	    </div>
+<!-- Slide 3 -->
+	    <div id="selection">
+	      <h1>HOW DO YOU LISTEN TO PUBLIC RADIO?</h1>
+	      <p>Of the 96 respondents who listen to public radio: 46 listen via podcasts, 20 
+	listen via smartphone applications, 44 listen via online streaming, and 73 listen to live broadcasts. The responses are not mutually exclusive. Broadcast radio still dominates as the chosen method for accessing radio content.</p>
 	<ul>
 		<li><a id="podcastChart" href="#">Podcast</a></li>
 		<li><a id ="smartphoneChart" href="#">Smartphone</a></li>
@@ -143,8 +174,81 @@ window.onload= function () {
 		<li><a id="radioChart" href="#">Terrestrial Radio</a></li>
 		<li><a id="all" href="#">All</a></li>
 	</ul>
-</div>
-<div id="popshows">
-</div>
+	<div id="listen_habits">	
+	</div>
+
+	    </div>
+<!-- Slide 4 -->
+	    <div>
+	      <h1>HOW DO YOU LISTEN TO PUBLIC RADIO?</h1>
+	      <p>In terms of “on the go” listening, we limited our survey to commute times with the assumption that this represents a more or less consistent listening habit. Sixty-five percent of public radio listeners consume shows while commuting to and from school or work, via either podcasts or live broadcast. Over three quarters of that 65% listen to live broadcasts. The most common way that respondents discover their favorite shows is through broadcast radio. Those who commute in automobiles are captive audience members who, if they like a program, will tune in every day at the same time. 
+	</p>
+	    </div>
+<!-- Slide 5 -->
+	       <div>
+	      <h1>BUT NEW TECHNOLOGIES ARE GAINING POPULARITY</h1>
+	      <p>Technology such as podcasting and streaming allows listeners to access content when and where they want. The ability to timeshift content and access digital media via mobile devices enables users to 
+	customize their listening experiences. 73 (n=73) of the 96 respondents (76%) who listen to public radio 
+	listen via terrestrial broadcast waves. 51 of those 73 (70%) supplement terrestrial access with 
+	alternative listening methods (podcasts, smartphone applications, and online streaming). </p>
+	    </div>
+<!-- Slide 6 -->
+	     <div>
+	      <h1>EXPLORING NEW TECHNOLOGY AND RADIO</h1>
+	      <p>Here is another of Christen's charts, looking more closely at how those that still listen to terrestrial radio supplement their listening.</p>
+	    </div>
+<!-- Slide 7 -->
+	    <div>
+	      <h1>SEARCHING FOR NEW CONTENT</h1>
+	      <p>63 of the 96 public radio listeners (66%) actively search for new radio content. Of the 63 who 
+	search for content, 42 searched for a particular episode, 29 searched for a particular subject, and 14 
+	searched for similar programs.</p>
+	    </div>
+<!-- Slide 8 -->
+	    <div id="popshows">
+	      <h1>DISCOVERY OF NEW SHOWS</h1>
+	      <p>74 of the 96 public radio listeners (77%) answered “yes” to the question “Do you have a favorite radio show?” Few respondents discovered their favorite shows through social media (3 of 74), iTunes (4 of 74), or NPR’s website (5 of 74). 27 of the 74 public radio listeners who have a favorite radio show learned of their favorite shows via “word of mouth,” illustrating that personal networks play a significant role in introducing listeners to new content. However, 53 of the 74 of the respondents discovered their favorite shows when they “heard the program[s] on the radio.”</p>
+		<!-- <div id="popshows">
+		</div> -->
+	    </div>
+<!-- Slide 9 -->
+	    <div>
+	      <h1>USER ENGAGEMENT</h1>
+	      <p>22 of 96 public radio listeners have contributed to their favorite public radio shows. An average of 5 of those 22 contributed via either call ins, emails, or by contributing pieces. The most 
+	prevalent way that respondents contribute to shows is by “liking” the program on social media (14 of 
+	22). It is possible that of the noted options (call ins, email, contributing pieces, and “liking” the program on social media), “liking” requires the least initiative — it is a relatively passive acknowledgement. </p>
+	    </div>
+<!-- Slide 10 -->
+	    <div>
+	      <h1>GETTING OLDER</h1>
+	      <p>According to industry statistics collected by Arbitron, public radio listenership peaks in the 55 to 64 age 
+	range. Terrestrial broadcast radio is still the most common way of accessing content (73% of our 
+	survey participants listen to content as it airs). According to a 2010 study conducted by Jacobs Media, 
+	35% of public radio listeners own a smartphone, and 90% use the Internet. As millennials and other 
+	younger generations age, their Internet habits will inform how they access public radio content. 
+	Additionally, the younger sample profiled in our survey demonstrates that listeners are using new 
+	technology to access radio content. Online and mobile access to content should be a high priority as 
+	producers plan for distribution. </p>
+	    </div>
+<!-- Navigation -->
+	  </div>
+	  <a href="#" class="prev"><img src="img/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
+	  <a href="#" class="next"><img src="img/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
+	</div>
+	<img src="img/example-frame.png" width="739" height="341" alt="Example Frame" id="frame">
+	  </div>
+<!-- Div for the charts. This has to stay empty to work with the javascript -->
+
 </body>
+	 <script>
+ 		$(function(){
+			$('#slides').slides({
+				preload: true,
+				preloadImage: 'img/loading.gif',
+				// play: 5000,
+				// pause: 2500,
+				// hoverPause: true
+			});
+		});
+</script>
 </html>
