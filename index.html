@@ -12,6 +12,8 @@
 <script src="js/libs/g.pie-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/libs/slides.jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/libs/slides.min.jquery.js" type="text/javascript" charset="utf-8"></script>
+<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
 
 
 <script>	
@@ -41,7 +43,7 @@ window.onload= function () {
 		// Barchart values are x, y, width, height
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			var chart1=r.barchart(10,30, 500, 350, [podcast]).attr({"fill":"#363942", "opacity": 0});
+			var chart1=r.barchart(null,null, 500, 350, [podcast]).attr({"fill":"#363942", "opacity": 0});
 			var chart1animate=chart1.animate({opacity: 1}, 1500 ).hover(fin,fout);
 			axisx;
 		}
@@ -56,7 +58,7 @@ window.onload= function () {
 	$('a#smartphoneChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			var chart2=r.barchart(10,30, 500,350, [smartphone]).attr({"fill":"#363942", "opacity": 0});
+			var chart2=r.barchart(null,null, 500,350, [smartphone]).attr({"fill":"#363942", "opacity": 0});
 			var chart2animate= chart2.animate({opacity: 1}, 1500 ).hover(fin,fout);
 		}
 		else {
@@ -69,7 +71,7 @@ window.onload= function () {
 	$('a#streamingChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			chart3= r.barchart(10,30, 500,350, [streaming]).attr({"fill":"#363942", "opacity": 0,});
+			chart3= r.barchart(null,null, 500,350, [streaming]).attr({"fill":"#363942", "opacity": 0,});
 			chart3animate= chart3.animate({opacity: 1}, 1500 ).hover(fin,fout); 
 		}
 		else {
@@ -82,7 +84,7 @@ window.onload= function () {
 	$('a#radioChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			chart4=r.barchart(10,30, 500,350, [radio]).attr({"fill":"#363942", "opacity": 0});
+			chart4=r.barchart(null,nullnull,null, 500,350, [radio]).attr({"fill":"#363942", "opacity": 0});
 			chart4animate= chart4.animate({opacity: 1}, 1500 ).hover(fin,fout);
 		}
 		else {
@@ -95,29 +97,27 @@ window.onload= function () {
 	$('a#all').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			r.barchart(10,30, 500, 350, [podcast]).attr({"fill":"#363942", "opacity": .6});
-			r.barchart(10,30, 500,350, [radio]).attr({"fill":"#FF8357", "opacity": .6});
-			r.barchart(10,30, 500,350, [streaming]).attr({"fill":"#D8CAA8", "opacity": .6});
-			r.barchart(10,30, 500,350, [smartphone]).attr({"fill":"#F5E9AE", "opacity": .6});
+			r.barchart(null,null, 500, 350, [podcast]).attr({"fill":"#363942", "opacity": .6});
+			r.barchart(null,null, 500,350, [radio]).attr({"fill":"#FF8357", "opacity": .6});
+			r.barchart(null,null, 500,350, [streaming]).attr({"fill":"#D8CAA8", "opacity": .6});
+			r.barchart(null,null, 500,350, [smartphone]).attr({"fill":"#F5E9AE", "opacity": .6});
 		}
 		else {
-			r.barchart(10,30, 500,350, [podcast]).attr({"fill":"#363942", "opacity": .6});
-			r.barchart(10,30, 500,350, [radio]).attr({"fill":"#FF8357", "opacity": .6});
-			r.barchart(10,30, 500,350, [streaming]).attr({"fill":"#D8CAA8", "opacity": .6});
-			r.barchart(10,30, 500,350, [smartphone]).attr({"fill":"#F5E9AE", "opacity": .6});
+			r.barchart(null,null, 500,350, [podcast]).attr({"fill":"#363942", "opacity": .6});
+			r.barchart(null,null, 500,350, [radio]).attr({"fill":"#FF8357", "opacity": .6});
+			r.barchart(null,null, 500,350, [streaming]).attr({"fill":"#D8CAA8", "opacity": .6});
+			r.barchart(null,null, 500,350, [smartphone]).attr({"fill":"#F5E9AE", "opacity": .6});
 		}
 	});		
 // Popular Shows
 	    var p = Raphael("popshows"),
-	        pie = p.piechart(320, 240, 100, [17,11,14,30,16,9]
-	    , { legend: ["All Things Considered %%","NPR Fresh Air %%","Radiolab %%","This American Life %%","Wait Wait Don't Tell Me %%","Car Talk %%"], legendpos: "east", colors: ["#FF8357", "#82220B", "#363942", "#D8CAA8", "#F5E9AE", "#209193"]}).attr({"stroke-width":3});
-	    p.text(320, 100, "Most Popular Public Radio Programs").attr(txtattr);
+	        pie = p.piechart(300, 200, 125, [17,11,14,30,16,9], { legend: ["All Things Considered %%","NPR Fresh Air %%","Radiolab %%","This American Life %%","Wait Wait Don't Tell Me %%","Car Talk %%"], legendpos: "west", colors: ["#FF8357", "#82220B", "#363942", "#D8CAA8", "#F5E9AE", "#209193"]}).attr({"stroke-width":3});
 	    pie.hover(function () {
 	        this.sector.stop();
 	        this.sector.scale(1.1, 1.1, this.cx, this.cy);
 	        if (this.label) {
 	             this.label[0].stop();
-	            this.label[0].attr({ r: 7.5 });
+	             this.label[0].attr({ r: 7.5 });
 	             this.label[1].attr({ "font-weight": 800 });
 	        }
 	    }, function () {
@@ -141,8 +141,8 @@ window.onload= function () {
 	    width:800px;
 	  }
 	  .slides_container div {
-	    width:1000px;
-	    height:800px;
+	    width:850px;
+	    height:400px;
 	    display:block;
 	  }
 	</style>
@@ -163,21 +163,36 @@ window.onload= function () {
 	      Admittedly, perhaps because the survey was distributed through the I School and Facebook, the average age of our respondents was younger: XXX years old. Also, 72% of our respondents were female.</p>
 	    </div>
 <!-- Slide 3 -->
-	    <div id="selection">
-			
+	    <div>
 	      <h1>HOW DO YOU LISTEN TO PUBLIC RADIO?</h1>
 	      <p>Of the 96 respondents who listen to public radio: 46 listen via podcasts, 20 
 	listen via smartphone applications, 44 listen via online streaming, and 73 listen to live broadcasts. The responses are not mutually exclusive. Broadcast radio still dominates as the chosen method for accessing radio content.</p>
-	<ul>
-		<li><a id="podcastChart" href="#">Podcast</a></li>
-		<li><a id ="smartphoneChart" href="#">Smartphone</a></li>
-		<li><a id="streamingChart" href="#">Streaming</a></li>
-		<li><a id="radioChart" href="#">Terrestrial Radio</a></li>
-		<li><a id="all" href="#">All</a></li>
-	</ul>
-	<div id="listen_habits">	
-	</div>
 	    </div>
+	
+	<div id="selection">
+			<ul id="nav">
+				<li><a id="podcastChart" href="#">Podcast</a></li>
+				<li><a id ="smartphoneChart" href="#">Smartphone</a></li>
+				<li><a id="streamingChart" href="#">Streaming</a></li>
+				<li><a id="radioChart" href="#">Terrestrial Radio</a></li>
+				<li><a id="all" href="#">All</a></li>
+			</ul>
+		<div id="listen_habits"></div>
+		<div id="xaxis">
+			<ul>
+				<li>21-23</li>
+				<li>24-26</li>
+				<li>27-29</li>
+				<li>30-32</li>
+				<li>33-35</li>
+				<li>36-38</li>
+				<li>39-41</li>
+				<li>42-45</li>
+				<li>46-48</li>
+				<li>49+</li>
+			</ul>
+		</div>
+	</div>
 <!-- Slide 4 -->
 	    <div>
 	      <h1>HOW DO YOU LISTEN TO PUBLIC RADIO?</h1>
@@ -205,11 +220,12 @@ window.onload= function () {
 	searched for similar programs.</p>
 	    </div>
 <!-- Slide 8 -->
-	    <div id="popshows">
-	      <h1>DISCOVERY OF NEW SHOWS</h1>
-	      <p>74 of the 96 public radio listeners (77%) answered “yes” to the question “Do you have a favorite radio show?” Few respondents discovered their favorite shows through social media (3 of 74), iTunes (4 of 74), or NPR’s website (5 of 74). 27 of the 74 public radio listeners who have a favorite radio show learned of their favorite shows via “word of mouth,” illustrating that personal networks play a significant role in introducing listeners to new content. However, 53 of the 74 of the respondents discovered their favorite shows when they “heard the program[s] on the radio.”</p>
-		<!-- <div id="popshows">
-		</div> -->
+	    <div>
+			<div id="leftdiscover">
+		      <h1>DISCOVERY OF NEW SHOWS</h1>
+		      <p>Personal networks play a significant role in introducing listeners to new content. 77% public radio listeners have a favorite radio show?” Few discovered favorite shows through social media (3 of 74), iTunes (4 of 74), or NPR’s website (5 of 74). Many (27 of the 74) learned of favorite shows via “word of mouth.” Most, however, (53 of 74) discovered their favorite shows listening to the radio.”</p>
+			</div>
+			<div id="popshows"></div>
 	    </div>
 <!-- Slide 9 -->
 	    <div>

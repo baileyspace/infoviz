@@ -98,7 +98,7 @@ sub { bottom: -0.25em; }
    Lists
    ========================================================================== */
 
-ul, ol { margin: 1em 0; padding: 0 0 0 40px; }
+ul, ol { margin: 1em 0; padding: 0 15px 0 5px; }
 dd { margin: 0 0 0 40px; }
 nav ul, nav ol { list-style: none; list-style-image: none; margin: 0; padding: 0; }
 
@@ -229,6 +229,87 @@ body {
 	-webkit-font-smoothing: subpixel-antialiased;
 }
 
+#title {
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	color:#0494CC;
+	font-size: 2em;
+}
+
+ul {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 1em;
+	text-indent: -1em;
+	
+}
+
+#nav {
+	padding: 0 0 0 190px;
+}
+
+#listen_habits{
+	position: absolute;
+	z-index:1;
+	left:90px;
+	top:35px;
+}
+
+#xaxis {
+	position: absolute;
+	z-index:2;
+	left:98px;
+	top:355px;
+}
+
+#xaxis ul{
+	text-decoration:none;	
+}
+
+#xaxis ul li{
+	display:inline;
+	width: 10px;
+	padding-right: 3px;
+	
+}
+
+#yaxis {
+	position:absolute;
+	z-index:3;
+	left:98px;
+	top:355px;	
+}
+
+#popshows {
+	position:absolute;
+	left:294px;
+	top:15px;
+}
+
+ul li a{
+	text-decoration: none;
+	color: black;
+	padding-right: 10px;
+}
+
+p {
+	width: 800px;
+}
+li, #nav li a{
+	display: inline;
+	margin: 0;
+	padding: 0;
+	color: #339;
+	font-weight: bold;
+	width: 50px;
+}
+
+h1 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	padding: 0px, 0px, 10px, 0px;
+}
+
 #container {
 	width:880px;
 	padding:2px;
@@ -237,11 +318,6 @@ body {
 	z-index:0;
 }
 
-#title{
-	font:normal 150%/1.5 Helvetica, Arial, sans-serif;
-	text-transform:lowercase;
-	color:#0494CC;
-}
 
 #example {
 	width:600px;
@@ -324,19 +400,15 @@ body {
 	left:813px;
 }
 
+#leftdiscover, #popshows {
+	width:45%;
+	float: left;
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
+#leftdiscover p {
+	width: 100%;
+}
 
 /* ==|== media queries ======================================================
    EXAMPLE Media Query for Responsive Design.
