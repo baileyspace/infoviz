@@ -9,9 +9,11 @@
 <script src="js/libs/raphael-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/libs/g.raphael-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/libs/g.bar-min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/libs/g.pie-min.js" type="text/javascript" charset="utf-8"></script>
+
 
 <script>	
- 	window.onload= function () {
+window.onload= function () {
 	// Data
 	var podcast=[2,6,8,8,9,6,2,2,0,3];
 	var smartphone=[0,4,2,4,6,2,1,0,0,1];
@@ -102,14 +104,36 @@
 			r.barchart(10,30, 500,350, [smartphone]).attr({"fill":"#F5E9AE", "opacity": .6});
 		}
 	});		
-};		
+
+	    var p = Raphael("popshows"),
+	        pie = p.piechart(320, 240, 100, [17,11,14,30,16,9]
+	    , { legend: ["All Things Considered %%","NPR Fresh Air %%","Radiolab %%","This American Life %%","Wait Wait Don't Tell Me %%","Car Talk %%"], legendpos: "east", colors: ["#FF8357", "#82220B", "#363942", "#D8CAA8", "#F5E9AE", "#209193"]}).attr({"stroke-width":3});
+	    p.text(320, 100, "Most Popular Public Radio Programs").attr(txtattr);
+	    pie.hover(function () {
+	        this.sector.stop();
+	        this.sector.scale(1.1, 1.1, this.cx, this.cy);
+	        if (this.label) {
+	             this.label[0].stop();
+	            this.label[0].attr({ r: 7.5 });
+	             this.label[1].attr({ "font-weight": 800 });
+	        }
+	    }, function () {
+	        this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "backIn");
+	        if (this.label) {
+	            this.label[0].animate({ r: 5 }, 500, "backIn");
+	             this.label[1].attr({ "font-weight": 400 });
+	        }
+	    });
+
+};
+		
 </script>
+
 	
 </head>
 <body>
 <!-- Div for the charts. This has to stay empty to work with the javascript -->
-<div id="listen_habits">
-	
+<div id="listen_habits">	
 </div>
 <div id="selection">
 	<ul>
@@ -119,6 +143,8 @@
 		<li><a id="radioChart" href="#">Terrestrial Radio</a></li>
 		<li><a id="all" href="#">All</a></li>
 	</ul>
+</div>
+<div id="popshows">
 </div>
 </body>
 </html>
