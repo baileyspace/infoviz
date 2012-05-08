@@ -289,6 +289,14 @@ ul {
 	
 }
 
+#habitlist ul{
+	text-decoration:none;	
+}
+	
+#habitlist li{
+	display:block;
+}
+
 #listen_habits, #search, #discover, #users{
 	position: absolute;
 	z-index:1;

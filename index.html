@@ -124,7 +124,7 @@ window.onload= function () {
 	});	
 		
 // Popular Shows Pie
-	    var p = Raphael("testdiv"),
+	    var p = Raphael("popshows"),
 	        pie = p.piechart(300, 200, 125, [17,11,14,30,16,9], { legend: ["All Things Considered %%","NPR Fresh Air %%","Radiolab %%","This American Life %%","Wait Wait Don't Tell Me %%","Car Talk %%"], legendpos: "east", colors: ["#FF8357", "#82220B", "#363942", "#D8CAA8", "#F5E9AE", "#209193"]}).attr({"stroke-width":3});
 	    pie.hover(function () {
 	        this.sector.stop();
@@ -142,28 +142,32 @@ window.onload= function () {
 	        }
 	    });
 	
-// Searching for Content
-//   "Particular episode":[0,6,7,5,6,4,4,2,2,3],
-//   "Particular subject":[0,2,6,3,4,4,2,3,0,5],
-//   "Similar programs":[0,2,5,0,2,3,1,0,0,1]
+// Searching for Content largest bar =20
+	//   "Particular episode"
+			var byepisode=[0,6,7,5,6,4,4,2,2,3];
+	//   "Particular subject"
+			var bysubject=[0,2,6,3,4,4,2,3,0,5];
+	//   "Similar programs"
+			var bysimilar=[0,2,5,0,2,3,1,0,0,1];
 	var rsearch = Raphael("search");
-    rsearch.barchart(x, y, w, h, [[0,6,7,5,6,4,4,2,2,3], [0,2,6,3,4,4,2,3,0,5], [0,2,5,0,2,3,1,0,0,1]], {stacked: true, colors: ["#FF8357", "#363942","#D8CAA8"]});
+    rsearch.barchart(x, y, w, h, [byepisode, bysubject, bysimilar], {stacked: true, colors: ["#FF8357", "#363942","#D8CAA8"]});
 
 // Discover New Shows
-// 
-// "Word of mouth":[2,5,6,4,3,6,1,1,0,1],
-// "Heard the program on the radio":[0,8,6,10,6,7,5,4,3,7],
-// "Social media, iTunes, NPR website":[0,6,6,2,1,2,0,0,0,0]
+
+	var wordofmouth=[2,5,6,4,3,6,1,1,0,1];
+	var ontheradio=[0,8,6,10,6,7,5,4,3,7];
+	// "Social media, iTunes, NPR website
+	var socialmedia=[0,6,6,2,1,2,0,0,0,0];
 
 	var rdiscover = Raphael("discover",640, 480);
-	rdiscover.barchart(x, y, w, h, [[2,5,6,4,3,6,1,1,0,1], [0,8,6,10,6,7,5,4,3,7], [0,6,6,2,1,2,0,0,0,0]], {stacked: true, colors: ["#FF8357", "#363942","#D8CAA8"]});
+	rdiscover.barchart(x, y, w, h, [wordofmouth, ontheradio, socialmedia], {stacked: true, colors: ["#FF8357", "#363942","#D8CAA8"]});
 
 // User Engagement
-// 	  "Age Range":["Total"],
-// 	  "Call-ins":["5"],
-// 	  "Emailed":["5"],
-// 	  "Contributed":["5"],
-// 	  "Liked":["13"]
+	// 	  "Age Range":["Total"],
+	// 	  "Call-ins":["5"],
+	// 	  "Emailed":["5"],
+	// 	  "Contributed":["5"],
+	// 	  "Liked":["13"]
 
 var rengage = Raphael("engagement1"),
     engagepie = rengage.piechart(300, 200, 125, [5,5,5,13], { legend: ["Called-in %%","Emailed %%","Contributed %%","Liked %%"], legendpos: "west", colors: ["#FF8357", "#82220B", "#363942", "#D8CAA8"]}).attr({"stroke-width":3});
