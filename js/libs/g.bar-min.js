@@ -4,4 +4,618 @@
  * Copyright (c) 2009 Dmitry Baranovskiy (http://g.raphaeljs.com)
  * Licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) license.
  */
-(function(){var f=Math.min,a=Math.max;function e(o,m,h,p,j,k,l,i){var s,n={round:"round",sharp:"sharp",soft:"soft",square:"square"};if((j&&!p)||(!j&&!h)){return l?"":i.path()}k=n[k]||"square";p=Math.round(p);h=Math.round(h);o=Math.round(o);m=Math.round(m);switch(k){case"round":if(!j){var g=~~(p/2);if(h<g){g=h;s=["M",o+0.5,m+0.5-~~(p/2),"l",0,0,"a",g,~~(p/2),0,0,1,0,p,"l",0,0,"z"]}else{s=["M",o+0.5,m+0.5-g,"l",h-g,0,"a",g,g,0,1,1,0,p,"l",g-h,0,"z"]}}else{g=~~(h/2);if(p<g){g=p;s=["M",o-~~(h/2),m,"l",0,0,"a",~~(h/2),g,0,0,1,h,0,"l",0,0,"z"]}else{s=["M",o-g,m,"l",0,g-p,"a",g,g,0,1,1,h,0,"l",0,p-g,"z"]}}break;case"sharp":if(!j){var q=~~(p/2);s=["M",o,m+q,"l",0,-p,a(h-q,0),0,f(q,h),q,-f(q,h),q+(q*2<p),"z"]}else{q=~~(h/2);s=["M",o+q,m,"l",-h,0,0,-a(p-q,0),q,-f(q,p),q,f(q,p),q,"z"]}break;case"square":if(!j){s=["M",o,m+~~(p/2),"l",0,-p,h,0,0,p,"z"]}else{s=["M",o+~~(h/2),m,"l",1-h,0,0,-p,h-1,0,"z"]}break;case"soft":if(!j){g=f(h,Math.round(p/5));s=["M",o+0.5,m+0.5-~~(p/2),"l",h-g,0,"a",g,g,0,0,1,g,g,"l",0,p-g*2,"a",g,g,0,0,1,-g,g,"l",g-h,0,"z"]}else{g=f(Math.round(h/5),p);s=["M",o-~~(h/2),m,"l",0,g-p,"a",g,g,0,0,1,g,-g,"l",h-2*g,0,"a",g,g,0,0,1,g,g,"l",0,p-g,"z"]}}if(l){return s.join(",")}else{return i.path(s)}}function d(l,J,H,g,m,V,D){D=D||{};var z=this,W=D.type||"square",u=parseFloat(D.gutter||"20%"),T=l.set(),E=l.set(),n=l.set(),B=l.set(),F=Math.max.apply(Math,V),U=[],I=0,M=D.colors||z.colors,A=V.length;if(Raphael.is(V[0],"array")){F=[];I=A;A=0;for(var R=V.length;R--;){E.push(l.set());F.push(Math.max.apply(Math,V[R]));A=Math.max(A,V[R].length)}if(D.stacked){for(var R=A;R--;){var r=0;for(var Q=V.length;Q--;){r+=+V[Q][R]||0}U.push(r)}}for(var R=V.length;R--;){if(V[R].length<A){for(var Q=A;Q--;){V[R].push(0)}}}F=Math.max.apply(Math,D.stacked?U:F)}F=(D.to)||F;var K=g/(A*(100+u)+u)*100,k=K*u/100,p=D.vgutter==null?20:D.vgutter,C=[],q=J+k,o=(m-2*p)/F;if(!D.stretch){k=Math.round(k);K=Math.floor(K)}!D.stacked&&(K/=I||1);for(var R=0;R<A;R++){C=[];for(var Q=0;Q<(I||1);Q++){var S=Math.round((I?V[Q][R]:V[R])*o),t=H+m-p-S,O=e(Math.round(q+K/2),t+S,K,S,true,W,null,l).attr({stroke:"none",fill:M[I?Q:R]});if(I){E[Q].push(O)}else{E.push(O)}O.y=t;O.x=Math.round(q+K/2);O.w=K;O.h=S;O.value=I?V[Q][R]:V[R];if(!D.stacked){q+=K}else{C.push(O)}}if(D.stacked){var P;B.push(P=l.rect(C[0].x-C[0].w/2,H,K,m).attr(z.shim));P.bars=l.set();var v=0;for(var L=C.length;L--;){C[L].toFront()}for(var L=0,w=C.length;L<w;L++){var O=C[L],G,S=(v+O.value)*o,N=e(O.x,H+m-p-!!v*0.5,K,S,true,W,1,l);P.bars.push(O);v&&O.attr({path:N});O.h=S;O.y=H+m-p-!!v*0.5-S;n.push(G=l.rect(O.x-O.w/2,O.y,K,O.value*o).attr(z.shim));G.bar=O;G.value=O.value;v+=O.value}q+=K}q+=k}B.toFront();q=J+k;if(!D.stacked){for(var R=0;R<A;R++){for(var Q=0;Q<(I||1);Q++){var G;n.push(G=l.rect(Math.round(q),H+p,K,m-p).attr(z.shim));G.bar=I?E[Q][R]:E[R];G.value=G.bar.value;q+=K}q+=k}}T.label=function(y,Z){y=y||[];this.labels=l.set();var aa,h=-Infinity;if(D.stacked){for(var x=0;x<A;x++){var X=0;for(var s=0;s<(I||1);s++){X+=I?V[s][x]:V[x];if(s==I-1){var ab=l.labelise(y[x],X,F);aa=l.text(E[x*(I||1)+s].x,H+m-p/2,ab).attr(txtattr).insertBefore(n[x*(I||1)+s]);var Y=aa.getBBox();if(Y.x-7<h){aa.remove()}else{this.labels.push(aa);h=Y.x+Y.width}}}}}else{for(var x=0;x<A;x++){for(var s=0;s<(I||1);s++){var ab=l.labelise(I?y[s]&&y[s][x]:y[x],I?V[s][x]:V[x],F);aa=l.text(E[x*(I||1)+s].x,Z?H+m-p/2:E[x*(I||1)+s].y-10,ab).attr(txtattr).insertBefore(n[x*(I||1)+s]);var Y=aa.getBBox();if(Y.x-7<h){aa.remove()}else{this.labels.push(aa);h=Y.x+Y.width}}}}return this};T.hover=function(i,h){B.hide();n.show();n.mouseover(i).mouseout(h);return this};T.hoverColumn=function(i,h){n.hide();B.show();h=h||function(){};B.mouseover(i).mouseout(h);return this};T.click=function(h){B.hide();n.show();n.click(h);return this};T.each=function(j){if(!Raphael.is(j,"function")){return this}for(var h=n.length;h--;){j.call(n[h])}return this};T.eachColumn=function(j){if(!Raphael.is(j,"function")){return this}for(var h=B.length;h--;){j.call(B[h])}return this};T.clickColumn=function(h){n.hide();B.show();B.click(h);return this};T.push(E,n,B);T.bars=E;T.covers=n;return T}function b(w,v,u,I,F,l,B){B=B||{};var h=this,n=B.type||"square",o=parseFloat(B.gutter||"20%"),D=w.set(),H=w.set(),q=w.set(),L=w.set(),T=Math.max.apply(Math,l),g=[],J=0,t=B.colors||h.colors,O=l.length;if(Raphael.is(l[0],"array")){T=[];J=O;O=0;for(var N=l.length;N--;){H.push(w.set());T.push(Math.max.apply(Math,l[N]));O=Math.max(O,l[N].length)}if(B.stacked){for(var N=O;N--;){var z=0;for(var M=l.length;M--;){z+=+l[M][N]||0}g.push(z)}}for(var N=l.length;N--;){if(l[N].length<O){for(var M=O;M--;){l[N].push(0)}}}T=Math.max.apply(Math,B.stacked?g:T)}T=(B.to)||T;var Q=Math.floor(F/(O*(100+o)+o)*100),r=Math.floor(Q*o/100),p=[],k=u+r,m=(I-1)/T;!B.stacked&&(Q/=J||1);for(var N=0;N<O;N++){p=[];for(var M=0;M<(J||1);M++){var S=J?l[M][N]:l[N],P=e(v,k+Q/2,Math.round(S*m),Q-1,false,n,null,w).attr({stroke:"none",fill:t[J?M:N]});if(J){H[M].push(P)}else{H.push(P)}P.x=v+Math.round(S*m);P.y=k+Q/2;P.w=Math.round(S*m);P.h=Q;P.value=+S;if(!B.stacked){k+=Q}else{p.push(P)}}if(B.stacked){var A=w.rect(v,p[0].y-p[0].h/2,I,Q).attr(h.shim);L.push(A);A.bars=w.set();var E=0;for(var C=p.length;C--;){p[C].toFront()}for(var C=0,K=p.length;C<K;C++){var P=p[C],R,S=Math.round((E+P.value)*m),G=e(v,P.y,S,Q-1,false,n,1,w);A.bars.push(P);E&&P.attr({path:G});P.w=S;P.x=v+S;q.push(R=w.rect(v+E*m,P.y-P.h/2,P.value*m,Q).attr(h.shim));R.bar=P;E+=P.value}k+=Q}k+=r}L.toFront();k=u+r;if(!B.stacked){for(var N=0;N<O;N++){for(var M=0;M<(J||1);M++){var R=w.rect(v,k,I,Q).attr(h.shim);q.push(R);R.bar=J?H[M][N]:H[N];R.value=R.bar.value;k+=Q}k+=r}}D.label=function(Z,W){Z=Z||[];this.labels=w.set();for(var V=0;V<O;V++){for(var U=0;U<J;U++){var y=w.labelise(J?Z[U]&&Z[U][V]:Z[V],J?l[U][V]:l[V],T),Y=W?H[V*(J||1)+U].x-Q/2+3:v+5,x=W?"end":"start",s;this.labels.push(s=w.text(Y,H[V*(J||1)+U].y,y).attr(txtattr).attr({"text-anchor":x}).insertBefore(q[0]));if(s.getBBox().x<v+5){s.attr({x:v+5,"text-anchor":"start"})}else{H[V*(J||1)+U].label=s}}}return this};D.hover=function(j,i){L.hide();q.show();i=i||function(){};q.mouseover(j).mouseout(i);return this};D.hoverColumn=function(j,i){q.hide();L.show();i=i||function(){};L.mouseover(j).mouseout(i);return this};D.each=function(s){if(!Raphael.is(s,"function")){return this}for(var j=q.length;j--;){s.call(q[j])}return this};D.eachColumn=function(s){if(!Raphael.is(s,"function")){return this}for(var j=L.length;j--;){s.call(L[j])}return this};D.click=function(i){L.hide();q.show();q.click(i);return this};D.clickColumn=function(i){q.hide();L.show();L.click(i);return this};D.push(H,q,L);D.bars=H;D.covers=q;return D}var c=function(){};c.prototype=Raphael.g;b.prototype=d.prototype=new c;Raphael.fn.hbarchart=function(h,l,j,g,i,k){return new b(this,h,l,j,g,i,k)};Raphael.fn.barchart=function(h,l,j,g,i,k){return new d(this,h,l,j,g,i,k)}})();
+(function () {
+    var mmin = Math.min,
+        mmax = Math.max;
+
+    function finger(x, y, width, height, dir, ending, isPath, paper) {
+        var path,
+            ends = { round: 'round', sharp: 'sharp', soft: 'soft', square: 'square' };
+
+        // dir 0 for horizontal and 1 for vertical
+        if ((dir && !height) || (!dir && !width)) {
+            return isPath ? "" : paper.path();
+        }
+
+        ending = ends[ending] || "square";
+        height = Math.round(height);
+        width = Math.round(width);
+        x = Math.round(x);
+        y = Math.round(y);
+
+        switch (ending) {
+            case "round":
+                if (!dir) {
+                    var r = ~~(height / 2);
+
+                    if (width < r) {
+                        r = width;
+                        path = [
+                            "M", x + .5, y + .5 - ~~(height / 2),
+                            "l", 0, 0,
+                            "a", r, ~~(height / 2), 0, 0, 1, 0, height,
+                            "l", 0, 0,
+                            "z"
+                        ];
+                    } else {
+                        path = [
+                            "M", x + .5, y + .5 - r,
+                            "l", width - r, 0,
+                            "a", r, r, 0, 1, 1, 0, height,
+                            "l", r - width, 0,
+                            "z"
+                        ];
+                    }
+                } else {
+                    r = ~~(width / 2);
+
+                    if (height < r) {
+                        r = height;
+                        path = [
+                            "M", x - ~~(width / 2), y,
+                            "l", 0, 0,
+                            "a", ~~(width / 2), r, 0, 0, 1, width, 0,
+                            "l", 0, 0,
+                            "z"
+                        ];
+                    } else {
+                        path = [
+                            "M", x - r, y,
+                            "l", 0, r - height,
+                            "a", r, r, 0, 1, 1, width, 0,
+                            "l", 0, height - r,
+                            "z"
+                        ];
+                    }
+                }
+                break;
+            case "sharp":
+                if (!dir) {
+                    var half = ~~(height / 2);
+
+                    path = [
+                        "M", x, y + half,
+                        "l", 0, -height, mmax(width - half, 0), 0, mmin(half, width), half, -mmin(half, width), half + (half * 2 < height),
+                        "z"
+                    ];
+                } else {
+                    half = ~~(width / 2);
+                    path = [
+                        "M", x + half, y,
+                        "l", -width, 0, 0, -mmax(height - half, 0), half, -mmin(half, height), half, mmin(half, height), half,
+                        "z"
+                    ];
+                }
+                break;
+            case "square":
+                if (!dir) {
+                    path = [
+                        "M", x, y + ~~(height / 2),
+                        "l", 0, -height, width, 0, 0, height,
+                        "z"
+                    ];
+                } else {
+                    path = [
+                        "M", x + ~~(width / 2), y,
+                        "l", 1 - width, 0, 0, -height, width - 1, 0,
+                        "z"
+                    ];
+                }
+                break;
+            case "soft":
+                if (!dir) {
+                    r = mmin(width, Math.round(height / 5));
+                    path = [
+                        "M", x + .5, y + .5 - ~~(height / 2),
+                        "l", width - r, 0,
+                        "a", r, r, 0, 0, 1, r, r,
+                        "l", 0, height - r * 2,
+                        "a", r, r, 0, 0, 1, -r, r,
+                        "l", r - width, 0,
+                        "z"
+                    ];
+                } else {
+                    r = mmin(Math.round(width / 5), height);
+                    path = [
+                        "M", x - ~~(width / 2), y,
+                        "l", 0, r - height,
+                        "a", r, r, 0, 0, 1, r, -r,
+                        "l", width - 2 * r, 0,
+                        "a", r, r, 0, 0, 1, r, r,
+                        "l", 0, height - r,
+                        "z"
+                    ];
+                }
+        }
+
+        if (isPath) {
+            return path.join(",");
+        } else {
+            return paper.path(path);
+        }
+    }
+
+    /*
+     * Vertical Barchart
+     */
+    function VBarchart(paper, x, y, width, height, values, opts) {
+        opts = opts || {};
+
+        var chartinst = this,
+            type = opts.type || "square",
+            gutter = parseFloat(opts.gutter || "20%"),
+            chart = paper.set(),
+            bars = paper.set(),
+            covers = paper.set(),
+            covers2 = paper.set(),
+            total = Math.max.apply(Math, values),
+            stacktotal = [],
+            multi = 0,
+            colors = opts.colors || chartinst.colors,
+            len = values.length;
+
+        if (Raphael.is(values[0], "array")) {
+            total = [];
+            multi = len;
+            len = 0;
+
+            for (var i = values.length; i--;) {
+                bars.push(paper.set());
+                total.push(Math.max.apply(Math, values[i]));
+                len = Math.max(len, values[i].length);
+            }
+
+            if (opts.stacked) {
+                for (var i = len; i--;) {
+                    var tot = 0;
+
+                    for (var j = values.length; j--;) {
+                        tot +=+ values[j][i] || 0;
+                    }
+
+                    stacktotal.push(tot);
+                }
+            }
+
+            for (var i = values.length; i--;) {
+                if (values[i].length < len) {
+                    for (var j = len; j--;) {
+                        values[i].push(0);
+                    }
+                }
+            }
+
+            total = Math.max.apply(Math, opts.stacked ? stacktotal : total);
+        }
+
+        total = (opts.to) || total;
+
+        var barwidth = width / (len * (100 + gutter) + gutter) * 100,
+            barhgutter = barwidth * gutter / 100,
+            barvgutter = opts.vgutter == null ? 20 : opts.vgutter,
+            stack = [],
+            X = x + barhgutter,
+            Y = (height - 2 * barvgutter) / total;
+
+        if (!opts.stretch) {
+            barhgutter = Math.round(barhgutter);
+            barwidth = Math.floor(barwidth);
+        }
+
+        !opts.stacked && (barwidth /= multi || 1);
+
+        for (var i = 0; i < len; i++) {
+            stack = [];
+
+            for (var j = 0; j < (multi || 1); j++) {
+                var h = Math.round((multi ? values[j][i] : values[i]) * Y),
+                    top = y + height - barvgutter - h,
+                    bar = finger(Math.round(X + barwidth / 2), top + h, barwidth, h, true, type, null, paper).attr({ stroke: "none", fill: colors[multi ? j : i] });
+
+                if (multi) {
+                    bars[j].push(bar);
+                } else {
+                    bars.push(bar);
+                }
+
+                bar.y = top;
+                bar.x = Math.round(X + barwidth / 2);
+                bar.w = barwidth;
+                bar.h = h;
+                bar.value = multi ? values[j][i] : values[i];
+
+                if (!opts.stacked) {
+                    X += barwidth;
+                } else {
+                    stack.push(bar);
+                }
+            }
+
+            if (opts.stacked) {
+                var cvr;
+
+                covers2.push(cvr = paper.rect(stack[0].x - stack[0].w / 2, y, barwidth, height).attr(chartinst.shim));
+                cvr.bars = paper.set();
+
+                var size = 0;
+
+                for (var s = stack.length; s--;) {
+                    stack[s].toFront();
+                }
+
+                for (var s = 0, ss = stack.length; s < ss; s++) {
+                    var bar = stack[s],
+                        cover,
+                        h = (size + bar.value) * Y,
+                        path = finger(bar.x, y + height - barvgutter - !!size * .5, barwidth, h, true, type, 1, paper);
+
+                    cvr.bars.push(bar);
+                    size && bar.attr({path: path});
+                    bar.h = h;
+                    bar.y = y + height - barvgutter - !!size * .5 - h;
+                    covers.push(cover = paper.rect(bar.x - bar.w / 2, bar.y, barwidth, bar.value * Y).attr(chartinst.shim));
+                    cover.bar = bar;
+                    cover.value = bar.value;
+                    size += bar.value;
+                }
+
+                X += barwidth;
+            }
+
+            X += barhgutter;
+        }
+
+        covers2.toFront();
+        X = x + barhgutter;
+
+        if (!opts.stacked) {
+            for (var i = 0; i < len; i++) {
+                for (var j = 0; j < (multi || 1); j++) {
+                    var cover;
+
+                    covers.push(cover = paper.rect(Math.round(X), y + barvgutter, barwidth, height - barvgutter).attr(chartinst.shim));
+                    cover.bar = multi ? bars[j][i] : bars[i];
+                    cover.value = cover.bar.value;
+                    X += barwidth;
+                }
+
+                X += barhgutter;
+            }
+        }
+
+        chart.label = function (labels, isBottom) {
+            labels = labels || [];
+            this.labels = paper.set();
+
+            var L, l = -Infinity;
+
+            if (opts.stacked) {
+                for (var i = 0; i < len; i++) {
+                    var tot = 0;
+
+                    for (var j = 0; j < (multi || 1); j++) {
+                        tot += multi ? values[j][i] : values[i];
+
+                        if (j == multi - 1) {
+                            var label = chartinst.labelise(labels[i], tot, total);
+
+                            L = paper.text(bars[j][i].x, y + height - barvgutter / 2, label).attr(chartinst.txtattr).attr({ fill: opts.legendcolor || "#000", "text-anchor": "start"}).insertBefore(covers[i * (multi || 1) + j]);
+
+                            var bb = L.getBBox();
+
+                            if (bb.x - 7 < l) {
+                                L.remove();
+                            } else {
+                                this.labels.push(L);
+                                l = bb.x + bb.width;
+                            }
+                        }
+                    }
+                }
+            } else {
+                for (var i = 0; i < len; i++) {
+                    for (var j = 0; j < (multi || 1); j++) {
+                        var label = chartinst.labelise(multi ? labels[j] && labels[j][i] : labels[i], multi ? values[j][i] : values[i], total);
+
+                        L = paper.text(bars[j][i].x - barhgutter / 2, isBottom ? y + height - barvgutter / 2 : bars[j][i].y - 10, label).attr(chartinst.txtattr).attr({ fill: opts.legendcolor || "#000", "text-anchor": "start"}).insertBefore(covers[i * (multi || 1) + j]);
+
+                        var bb = L.getBBox();
+
+                        if (bb.x - 7 < l) {
+                            L.remove();
+                        } else {
+                            this.labels.push(L);
+                            l = bb.x + bb.width;
+                        }
+                    }
+                }
+            }
+            return this;
+        };
+
+        chart.hover = function (fin, fout) {
+            covers2.hide();
+            covers.show();
+            covers.mouseover(fin).mouseout(fout);
+            return this;
+        };
+
+        chart.hoverColumn = function (fin, fout) {
+            covers.hide();
+            covers2.show();
+            fout = fout || function () {};
+            covers2.mouseover(fin).mouseout(fout);
+            return this;
+        };
+
+        chart.click = function (f) {
+            covers2.hide();
+            covers.show();
+            covers.click(f);
+            return this;
+        };
+
+        chart.each = function (f) {
+            if (!Raphael.is(f, "function")) {
+                return this;
+            }
+            for (var i = covers.length; i--;) {
+                f.call(covers[i]);
+            }
+            return this;
+        };
+
+        chart.eachColumn = function (f) {
+            if (!Raphael.is(f, "function")) {
+                return this;
+            }
+            for (var i = covers2.length; i--;) {
+                f.call(covers2[i]);
+            }
+            return this;
+        };
+
+        chart.clickColumn = function (f) {
+            covers.hide();
+            covers2.show();
+            covers2.click(f);
+            return this;
+        };
+
+        chart.push(bars, covers, covers2);
+        chart.bars = bars;
+        chart.covers = covers;
+        return chart;
+    };
+
+    /**
+     * Horizontal Barchart
+     */
+    function HBarchart(paper, x, y, width, height, values, opts) {
+        opts = opts || {};
+
+        var chartinst = this,
+            type = opts.type || "square",
+            gutter = parseFloat(opts.gutter || "20%"),
+            chart = paper.set(),
+            bars = paper.set(),
+            covers = paper.set(),
+            covers2 = paper.set(),
+            total = Math.max.apply(Math, values),
+            stacktotal = [],
+            multi = 0,
+            colors = opts.colors || chartinst.colors,
+            len = values.length;
+
+        if (Raphael.is(values[0], "array")) {
+            total = [];
+            multi = len;
+            len = 0;
+
+            for (var i = values.length; i--;) {
+                bars.push(paper.set());
+                total.push(Math.max.apply(Math, values[i]));
+                len = Math.max(len, values[i].length);
+            }
+
+            if (opts.stacked) {
+                for (var i = len; i--;) {
+                    var tot = 0;
+                    for (var j = values.length; j--;) {
+                        tot +=+ values[j][i] || 0;
+                    }
+                    stacktotal.push(tot);
+                }
+            }
+
+            for (var i = values.length; i--;) {
+                if (values[i].length < len) {
+                    for (var j = len; j--;) {
+                        values[i].push(0);
+                    }
+                }
+            }
+
+            total = Math.max.apply(Math, opts.stacked ? stacktotal : total);
+        }
+
+        total = (opts.to) || total;
+
+        var barheight = Math.floor(height / (len * (100 + gutter) + gutter) * 100),
+            bargutter = Math.floor(barheight * gutter / 100),
+            stack = [],
+            Y = y + bargutter,
+            X = (width - 1) / total;
+
+        !opts.stacked && (barheight /= multi || 1);
+
+        for (var i = 0; i < len; i++) {
+            stack = [];
+
+            for (var j = 0; j < (multi || 1); j++) {
+                var val = multi ? values[j][i] : values[i],
+                    bar = finger(x, Y + barheight / 2, Math.round(val * X), barheight - 1, false, type, null, paper).attr({stroke: "none", fill: colors[multi ? j : i]});
+
+                if (multi) {
+                    bars[j].push(bar);
+                } else {
+                    bars.push(bar);
+                }
+
+                bar.x = x + Math.round(val * X);
+                bar.y = Y + barheight / 2;
+                bar.w = Math.round(val * X);
+                bar.h = barheight;
+                bar.value = +val;
+
+                if (!opts.stacked) {
+                    Y += barheight;
+                } else {
+                    stack.push(bar);
+                }
+            }
+
+            if (opts.stacked) {
+                var cvr = paper.rect(x, stack[0].y - stack[0].h / 2, width, barheight).attr(chartinst.shim);
+
+                covers2.push(cvr);
+                cvr.bars = paper.set();
+
+                var size = 0;
+
+                for (var s = stack.length; s--;) {
+                    stack[s].toFront();
+                }
+
+                for (var s = 0, ss = stack.length; s < ss; s++) {
+                    var bar = stack[s],
+                        cover,
+                        val = Math.round((size + bar.value) * X),
+                        path = finger(x, bar.y, val, barheight - 1, false, type, 1, paper);
+
+                    cvr.bars.push(bar);
+                    size && bar.attr({ path: path });
+                    bar.w = val;
+                    bar.x = x + val;
+                    covers.push(cover = paper.rect(x + size * X, bar.y - bar.h / 2, bar.value * X, barheight).attr(chartinst.shim));
+                    cover.bar = bar;
+                    size += bar.value;
+                }
+
+                Y += barheight;
+            }
+
+            Y += bargutter;
+        }
+
+        covers2.toFront();
+        Y = y + bargutter;
+
+        if (!opts.stacked) {
+            for (var i = 0; i < len; i++) {
+                for (var j = 0; j < (multi || 1); j++) {
+                    var cover = paper.rect(x, Y, width, barheight).attr(chartinst.shim);
+
+                    covers.push(cover);
+                    cover.bar = multi ? bars[j][i] : bars[i];
+                    cover.value = cover.bar.value;
+                    Y += barheight;
+                }
+
+                Y += bargutter;
+            }
+        }
+
+        chart.label = function (labels, isRight) {
+            labels = labels || [];
+            this.labels = paper.set();
+
+            for (var i = 0; i < len; i++) {
+                for (var j = 0; j < multi; j++) {
+                    var  label = chartinst.labelise(multi ? labels[j] && labels[j][i] : labels[i], multi ? values[j][i] : values[i], total),
+                        X = isRight ? bars[j][i].x - barheight / 2 + 3 : x + 5,
+                        A = isRight ? "end" : "start",
+                        L;
+
+                    this.labels.push(L = paper.text(X, bars[j][i].y, label).attr(chartinst.txtattr).attr({ fill: opts.legendcolor || "#000", "text-anchor": "start"}).insertBefore(covers[0]));
+
+                    if (L.getBBox().x < x + 5) {
+                        L.attr({x: x + 5, "text-anchor": "start"});
+                    } else {
+                        bars[j][i].label = L;
+                    }
+                }
+            }
+
+            return this;
+        };
+
+        chart.hover = function (fin, fout) {
+            covers2.hide();
+            covers.show();
+            fout = fout || function () {};
+            covers.mouseover(fin).mouseout(fout);
+            return this;
+        };
+
+        chart.hoverColumn = function (fin, fout) {
+            covers.hide();
+            covers2.show();
+            fout = fout || function () {};
+            covers2.mouseover(fin).mouseout(fout);
+            return this;
+        };
+
+        chart.each = function (f) {
+            if (!Raphael.is(f, "function")) {
+                return this;
+            }
+            for (var i = covers.length; i--;) {
+                f.call(covers[i]);
+            }
+            return this;
+        };
+
+        chart.eachColumn = function (f) {
+            if (!Raphael.is(f, "function")) {
+                return this;
+            }
+            for (var i = covers2.length; i--;) {
+                f.call(covers2[i]);
+            }
+            return this;
+        };
+
+        chart.click = function (f) {
+            covers2.hide();
+            covers.show();
+            covers.click(f);
+            return this;
+        };
+
+        chart.clickColumn = function (f) {
+            covers.hide();
+            covers2.show();
+            covers2.click(f);
+            return this;
+        };
+
+        chart.push(bars, covers, covers2);
+        chart.bars = bars;
+        chart.covers = covers;
+        return chart;
+    };
+
+    //inheritance
+    var F = function() {};
+    F.prototype = Raphael.g;
+    HBarchart.prototype = VBarchart.prototype = new F;
+
+    Raphael.fn.hbarchart = function(x, y, width, height, values, opts) {
+        return new HBarchart(this, x, y, width, height, values, opts);
+    };
+
+    Raphael.fn.barchart = function(x, y, width, height, values, opts) {
+        return new VBarchart(this, x, y, width, height, values, opts);
+    };
+})();

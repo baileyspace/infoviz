@@ -39,10 +39,14 @@ window.onload= function () {
     fout = function () {
         this.flag.animate({opacity: 0}, 300, function () {this.remove();});
 	};
-	
+
 	// Labels
-	var axisx=["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older"];
+	var xlabel=["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older"];
+	// x_start, y_start, x_width, from, to, steps, orientation, labels, type, dashsize
+
 	r.barchart(x,y, w, h, [podcast]).attr({"fill":"#363942", "opacity": 1});
+	axisx=Raphael.g.axis(0,0,w,null,null,10,2,[xlabel], "|", 0,r);
+	axis.text.attr(txtattr);
 	
 	// Podcast Chart
 	$('a#podcastChart').click(function(){ 
@@ -236,7 +240,7 @@ engagepie.hover(function () {
 				<li><a id="all" href="#">All</a></li>
 			</ul>
 		<div id="listen_habits"></div>
-		<div id="xaxis">
+		<!-- <div id="xaxis">
 			<ul>
 				<li>21-23</li>
 				<li>24-26</li>
@@ -249,7 +253,7 @@ engagepie.hover(function () {
 				<li>46-48</li>
 				<li>49+</li>
 			</ul>
-		</div>
+		</div> -->
 	</div>
 <!-- Slide 4 -->
 	    <div>
