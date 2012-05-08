@@ -39,7 +39,7 @@ window.onload= function () {
 	rusers.barchart(x,y, w, h, [userdata]).attr({"fill":"#363942"}).hover(fin,fout);
 
 
-// Listener Habits Bar Charts
+// Listener Habits Bar Charts --legend breaks in slides
 	// Listener Habits Variables
 	var podcast=[2,6,8,8,9,6,2,2,0,3];
 	var smartphone=[0,4,2,4,6,2,1,0,0,1];
@@ -48,7 +48,7 @@ window.onload= function () {
 	// create canvas
 	var r = Raphael("listen_habits");
 	// chart for initial display
-	var chart1=r.barchart(x,y, w, h, [podcast, [0,0,0,0,6,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#C5C3C9"]});
+	r.barchart(x,y, w, h, [podcast, [0,0,0,0,6,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#C5C3C9"]});
 	
 	// Labels-- there's a bug in the new version of g.raphael. ".axis" no longer works. Try to mimic with html/css. Have tried all of the below.
 	// var xlabel=["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older"];
@@ -62,14 +62,12 @@ window.onload= function () {
 		// Barchart values are x, y, width, height
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			chart1.attr({"opacity": 0});
-			var chart1animate=chart1.animate({opacity: 1}, 1500 ).hover(fin,fout);
-			axisx;
+			chart1= r.barchart(x,y, w, h, [podcast, [0,0,0,0,6,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#C5C3C9"]}).attr({"opacity": 0});
+			chart1animate=chart1.animate({opacity: 1}, 1500 ).hover(fin,fout);
 		}
 		else {
 			chart1;
 			chart1animate;
-			axisx;
 		} 
 	});
 	
