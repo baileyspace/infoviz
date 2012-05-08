@@ -320,6 +320,17 @@ ul {
 	top:15px;
 }
 
+#engagement1left, #engagement1, #popshows, #leftpopshows {
+	width:45%;
+	float: left;
+}
+
+
+#engagement1left p, #leftpopshows p {
+	width: 100%;
+}
+
+
 /*Listening Habits Slide
 */
 #nav {
