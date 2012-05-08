@@ -25,6 +25,10 @@ window.onload= function () {
 	var smartphone=[0,4,2,4,6,2,1,0,0,1];
 	var streaming=[0,5,13,11,8,3,3,1,0,1];
 	var radio=[0,7,10,12,9,12,5,3,4,11];
+	var x=0;
+	var y=0;
+	var w=500;
+	var h=350;
 	// create canvas
 	var r = Raphael("listen_habits");
 	var txtattr={font:"1em Arial", fill:"#888", "font-weight": "bold", "color": "#363942", "fill": "#363942"};
@@ -44,7 +48,7 @@ window.onload= function () {
 		// Barchart values are x, y, width, height
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			var chart1=r.barchart(null,null, 500, 350, [podcast]).attr({"fill":"#363942", "opacity": 0});
+			var chart1=r.barchart(x,y, w, h, [podcast]).attr({"fill":"#363942", "opacity": 0});
 			var chart1animate=chart1.animate({opacity: 1}, 1500 ).hover(fin,fout);
 			axisx;
 		}
@@ -59,7 +63,7 @@ window.onload= function () {
 	$('a#smartphoneChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			var chart2=r.barchart(null,null, 500,350, [smartphone]).attr({"fill":"#363942", "opacity": 0});
+			var chart2=r.barchart(x,y,w,h, [smartphone]).attr({"fill":"#363942", "opacity": 0});
 			var chart2animate= chart2.animate({opacity: 1}, 1500 ).hover(fin,fout);
 		}
 		else {
@@ -72,7 +76,7 @@ window.onload= function () {
 	$('a#streamingChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			chart3= r.barchart(null,null, 500,350, [streaming]).attr({"fill":"#363942", "opacity": 0,});
+			chart3= r.barchart(x,y,w,h, [streaming]).attr({"fill":"#363942", "opacity": 0,});
 			chart3animate= chart3.animate({opacity: 1}, 1500 ).hover(fin,fout); 
 		}
 		else {
@@ -85,7 +89,7 @@ window.onload= function () {
 	$('a#radioChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			chart4=r.barchart(null,nullnull,null, 500,350, [radio]).attr({"fill":"#363942", "opacity": 0});
+			chart4=r.barchart(x,y,w,h, [radio]).attr({"fill":"#363942", "opacity": 0});
 			chart4animate= chart4.animate({opacity: 1}, 1500 ).hover(fin,fout);
 		}
 		else {
@@ -94,22 +98,18 @@ window.onload= function () {
 		}
 	});
 	
-	// All chart - which doesn't currently make a lot of sense	
+	// All chart	
 	$('a#all').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			r.barchart(null,null, 500, 350, [podcast]).attr({"fill":"#363942", "opacity": .6});
-			r.barchart(null,null, 500,350, [radio]).attr({"fill":"#FF8357", "opacity": .6});
-			r.barchart(null,null, 500,350, [streaming]).attr({"fill":"#D8CAA8", "opacity": .6});
-			r.barchart(null,null, 500,350, [smartphone]).attr({"fill":"#F5E9AE", "opacity": .6});
+			chart6=r.barchart(x,y,w,h, [podcast,radio,streaming,smartphone],{stacked: true, colors: ["#FF8357", "#363942","#D8CAA8","#209193"]}).attr({"opacity":0});
+			chart6animate=chart6.animate({opacity: 1}, 1500 );
 		}
 		else {
-			r.barchart(null,null, 500,350, [podcast]).attr({"fill":"#363942", "opacity": .6});
-			r.barchart(null,null, 500,350, [radio]).attr({"fill":"#FF8357", "opacity": .6});
-			r.barchart(null,null, 500,350, [streaming]).attr({"fill":"#D8CAA8", "opacity": .6});
-			r.barchart(null,null, 500,350, [smartphone]).attr({"fill":"#F5E9AE", "opacity": .6});
+			chart6;
+			chart6animate;
 		}
-	});
+	});	
 
 // Our Users
 			// Data
@@ -118,7 +118,7 @@ window.onload= function () {
 			// create canvas
 			var rusers = Raphael("users");
 			// functions for hover
-			var chart5=rusers.barchart(null,null, 500, 350, [userdata]).attr({"fill":"#363942"}).hover(fin,fout);
+			var chart5=rusers.barchart(x,y, w, h, [userdata]).attr({"fill":"#363942"}).hover(fin,fout);
 		
 // Popular Shows
 	    var p = Raphael("popshows"),
@@ -144,7 +144,7 @@ window.onload= function () {
 //   "Particular subject":[0,2,6,3,4,4,2,3,0,5],
 //   "Similar programs":[0,2,5,0,2,3,1,0,0,1]
 	var rsearch = Raphael("search");
-    rsearch.barchart(330, 250, 300, 220, [[0,6,7,5,6,4,4,2,2,3], [0,2,6,3,4,4,2,3,0,5], [0,2,5,0,2,3,1,0,0,1]], {stacked: true, colors: ["#FF8357", "#363942","#D8CAA8"]});
+    rsearch.barchart(x, y, w, h, [[0,6,7,5,6,4,4,2,2,3], [0,2,6,3,4,4,2,3,0,5], [0,2,5,0,2,3,1,0,0,1]], {stacked: true, colors: ["#FF8357", "#363942","#D8CAA8"]});
 
 // Discover New Shows
 // 
@@ -153,7 +153,7 @@ window.onload= function () {
 // "Social media, iTunes, NPR website":[0,6,6,2,1,2,0,0,0,0]
 
 	var rdiscover = Raphael("discover",640, 480);
-	rdiscover.barchart(330, 250, 300, 220, [[2,5,6,4,3,6,1,1,0,1], [0,8,6,10,6,7,5,4,3,7], [0,6,6,2,1,2,0,0,0,0]], {stacked: true, colors: ["#FF8357", "#363942","#D8CAA8"]});
+	rdiscover.barchart(x, y, w, h, [[2,5,6,4,3,6,1,1,0,1], [0,8,6,10,6,7,5,4,3,7], [0,6,6,2,1,2,0,0,0,0]], {stacked: true, colors: ["#FF8357", "#363942","#D8CAA8"]});
 
 // User Engagement
 // 	  "Age Range":["Total"],
@@ -205,17 +205,17 @@ engagepie.hover(function () {
 <!-- Slide 1 -->
 	    <div>
 	      <h1>LISTEN UP</h1>
-		Public radio has a monthly listenership of 64.7 million people. Listenership peaks in the 55 to 64 age range.    
-
-		But what does it mean to listen to public radio?
-
-		*Sources: Arbitron, http://170millionamericans.org/numbers
+		<p>Public radio has a monthly listenership of 64.7 million people. Listenership peaks in the 55 to 64 age range.</p>    
+		<p>But what does it mean to listen to public radio?</p>
+		<p>*Sources: Arbitron, <a href="http://170millionamericans.org/numbers">http://170millionamericans.org/numbers</a></p>
 	    </div>
 <!-- Slide 2 -->
-	    <div id="users">
+	    <div>
 	      <h1>BUT...</h1>
 	      <p>What does it mean to listen to public radio? We did a survey to explore this question further. 
 	      Admittedly, perhaps because the survey was distributed through the I School and Facebook, the average age of our respondents was younger: XXX years old. Also, 72% of our respondents were female.</p>
+			<div id="users">
+			</div>
 	    </div>
 <!-- Slide 3 -->
 	    <div>
