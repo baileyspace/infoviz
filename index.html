@@ -42,6 +42,7 @@ window.onload= function () {
 	
 	// Labels
 	var axisx=["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older"];
+	r.barchart(x,y, w, h, [podcast]).attr({"fill":"#363942", "opacity": 1});
 	
 	// Podcast Chart
 	$('a#podcastChart').click(function(){ 
@@ -63,8 +64,8 @@ window.onload= function () {
 	$('a#smartphoneChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			var chart2=r.barchart(x,y,w,h, [smartphone]).attr({"fill":"#363942", "opacity": 0});
-			var chart2animate= chart2.animate({opacity: 1}, 1500 ).hover(fin,fout);
+			chart2=r.barchart(x,y,w,h, [smartphone]).attr({"fill":"#363942", "opacity": 0});
+			chart2animate= chart2.animate({opacity: 1}, 1500 ).hover(fin,fout);			
 		}
 		else {
 			chart2;
@@ -77,11 +78,13 @@ window.onload= function () {
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
 			chart3= r.barchart(x,y,w,h, [streaming]).attr({"fill":"#363942", "opacity": 0,});
-			chart3animate= chart3.animate({opacity: 1}, 1500 ).hover(fin,fout); 
+			chart3animate= chart3.animate({opacity: 1}, 1500 ).hover(fin,fout);
+			filler;
 		}
 		else {
 			chart3;
 			chart3animate;
+			filler;
 		}
 	});
 	
@@ -290,10 +293,12 @@ engagepie.hover(function () {
 		</div>
 <!-- Slide 9 -->
 	    <div>
+			<div id= "engage_container">
 	      <h1>USER ENGAGEMENT</h1>
 	      <p>22 of 96 public radio listeners have contributed to their favorite public radio shows. An average of 5 of those 22 contributed via either call ins, emails, or by contributing pieces. The most 
 	prevalent way that respondents contribute to shows is by “liking” the program on social media (14 of 
 	22). It is possible that of the noted options (call ins, email, contributing pieces, and “liking” the program on social media), “liking” requires the least initiative — it is a relatively passive acknowledgement. </p>
+		</div>
 		<div id="engagement1"></div>
 	    </div>
 <!-- Slide 10 -->
