@@ -18,19 +18,11 @@
 
 <script>	
 window.onload= function () {
-	
-// Listener Habits
-	// Data
-	var podcast=[2,6,8,8,9,6,2,2,0,3];
-	var smartphone=[0,4,2,4,6,2,1,0,0,1];
-	var streaming=[0,5,13,11,8,3,3,1,0,1];
-	var radio=[0,7,10,12,9,12,5,3,4,11];
+// Universal Variables and functions
 	var x=0;
 	var y=0;
 	var w=500;
 	var h=350;
-	// create canvas
-	var r = Raphael("listen_habits");
 	var txtattr={font:"1em Arial", fill:"#888", "font-weight": "bold", "color": "#363942", "fill": "#363942"};
 	// functions for hover
 	fin = function () {
@@ -38,12 +30,27 @@ window.onload= function () {
     };
     fout = function () {
         this.flag.animate({opacity: 0}, 300, function () {this.remove();});
-	};
+	};	
 	
-	r.barchart(x,y, w, h, [podcast, [0,0,0,0,6,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#C5C3C9"]});
-	
+// Our Users Bar Chart
+	// User Variables
+	var userdata=[2,12,14,16,13,15,5,4,4,11];
+	var rusers = Raphael("users");
+	rusers.barchart(x,y, w, h, [userdata]).attr({"fill":"#363942"}).hover(fin,fout);
 
-	// Labels-- there's a bug in the new version of g.raphael. ".axis" no longer works. Try to mimic with html/css.
+
+// Listener Habits Bar Charts
+	// Listener Habits Variables
+	var podcast=[2,6,8,8,9,6,2,2,0,3];
+	var smartphone=[0,4,2,4,6,2,1,0,0,1];
+	var streaming=[0,5,13,11,8,3,3,1,0,1];
+	var radio=[0,7,10,12,9,12,5,3,4,11];
+	// create canvas
+	var r = Raphael("listen_habits");
+	// chart for initial display
+	var chart1=r.barchart(x,y, w, h, [podcast, [0,0,0,0,6,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#C5C3C9"]});
+	
+	// Labels-- there's a bug in the new version of g.raphael. ".axis" no longer works. Try to mimic with html/css. Have tried all of the below.
 	// var xlabel=["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older"];
 	// x_start, y_start, x_width, from, to, steps, orientation, labels, type, dashsize
 	// testchart.label([xlabel]);
@@ -55,7 +62,7 @@ window.onload= function () {
 		// Barchart values are x, y, width, height
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			var chart1=r.barchart(x,y, w, h, [podcast,[0,0,0,0,6,0,0,0,0,0]],{stacked: true, colors: ["#363942", "#C5C3C9"]}).attr({"opacity": 0});
+			chart1.attr({"opacity": 0});
 			var chart1animate=chart1.animate({opacity: 1}, 1500 ).hover(fin,fout);
 			axisx;
 		}
@@ -105,7 +112,7 @@ window.onload= function () {
 		}
 	});
 	
-	// All chart	
+	// All chart- stacked chart of all data. Legend?? Also, needs different y axis.	
 	$('a#all').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
@@ -117,15 +124,6 @@ window.onload= function () {
 			chart6animate;
 		}
 	});	
-
-// Our Users
-			// Data
-			var userdata=[2,12,14,16,13,15,5,4,4,11];
-			
-			// create canvas
-			var rusers = Raphael("users");
-			// functions for hover
-			var chart5=rusers.barchart(x,y, w, h, [userdata]).attr({"fill":"#363942"}).hover(fin,fout);
 		
 // Popular Shows Pie
 	    var p = Raphael("testdiv"),
@@ -205,66 +203,29 @@ engagepie.hover(function () {
 	    display:block;
 	  }
 	</style>
-	  <div id="title"> PUBLIC RADIO LISTENER HABITS: A POP UP RADIO ARCHIVE SURVEY</div>
-	  <div id="container">
+	
+<div id="title"> PUBLIC RADIO LISTENER HABITS: A POP UP RADIO ARCHIVE SURVEY</div>
+<div id="container">
 	<div id="slides">
 	  <div class="slides_container">
 <!-- Slide 1 -->
-	    <div>
-	      <h1>LISTEN UP</h1>
+	<div>
+		<h1>LISTEN UP</h1>
 		<p>Public radio has a monthly listenership of 64.7 million people.</p>  
 		<p>Listenership peaks in the 55 to 64 age range.</p>
 		<br></br> 
 		<br></br>
 		<br></br>  
 		<p style="font-size: 12px">Sources: Arbitron, <a href="http://170millionamericans.org/numbers">http://170millionamericans.org/numbers</a></p>
-	    </div>
+	</div>
 <!-- Slide 2 -->
-	    <div>
-	          <h1>BUT WHAT DOES IT MEAN TO LISTEN TO PUBLIC RADIO?</h1>
-		      <p>We conducted a survey to explore this question further.</p> 
-		      <p>Admittedly, perhaps because the survey was distributed through the I School and our Facebook networks, most of our respondents were between 26 and 38 years of age.</p> 
-		      <p>Also, 72% of our respondents were female.</p>
-				<div id="users"></div>
-				<div id="xaxis">
-				<ul>
-					<li>21-23</li>
-					<li>24-26</li>
-					<li>27-29</li>
-					<li>30-32</li>
-					<li>33-35</li>
-					<li>36-38</li>
-					<li>39-41</li>
-					<li>42-45</li>
-					<li>46-48</li>
-					<li>49+</li>
-				</ul>
-			</div>
-		    </div>
-		
-<!-- Slide 3 -->
-	    <div>
-	      <h1>HOW DO YOU LISTEN TO PUBLIC RADIO?</h1>
-	      <p>Of the 96 respondents who listen to public radio:</p> 
-	      <ul id="habitlist">
-	      <li>46 listen via podcasts</li>
-	      <li>20 listen via smartphone applications</li>
-	      <li>44 listen via online streaming</li>
-	      <li>73 listen to live broadcasts</li>
-	      </ul>
-	      <p>The responses are not mutually exclusive. Broadcast radio still dominates as the chosen method for accessing radio content.</p>
-	    </div>
-<!-- Slide 4 -->	
-	<div id="selection">
-			<ul id="nav">
-				<li><a id="podcastChart" href="#">Podcast</a></li>
-				<li><a id ="smartphoneChart" href="#">Smartphone</a></li>
-				<li><a id="streamingChart" href="#">Streaming</a></li>
-				<li><a id="radioChart" href="#">Terrestrial Radio</a></li>
-				<li><a id="all" href="#">All</a></li>
-			</ul>
-		<div id="listen_habits"></div>
-		<div id="xaxis">
+    <div>
+          <h1>BUT WHAT DOES IT MEAN TO LISTEN TO PUBLIC RADIO?</h1>
+	      <p>We conducted a survey to explore this question further.</p> 
+	      <p>Admittedly, perhaps because the survey was distributed through the I School and our Facebook networks, most of our respondents were between 26 and 38 years of age.</p> 
+	      <p>Also, 72% of our respondents were female.</p>
+			<div id="users"></div>
+			<div id="xaxis">
 			<ul>
 				<li>21-23</li>
 				<li>24-26</li>
@@ -278,114 +239,150 @@ engagepie.hover(function () {
 				<li>49+</li>
 			</ul>
 		</div>
-	</div>
+	    </div>
+		
+<!-- Slide 3 -->
+		<div>
+			<h1>HOW DO YOU LISTEN TO PUBLIC RADIO?</h1>
+			<p>Of the 96 respondents who listen to public radio:</p> 
+			<ul id="habitlist">
+			<li>46 listen via podcasts</li>
+			<li>20 listen via smartphone applications</li>
+			<li>44 listen via online streaming</li>
+			<li>73 listen to live broadcasts</li>
+			</ul>
+			<p>The responses are not mutually exclusive. Broadcast radio still dominates as the chosen method for accessing radio content.</p>
+		</div>
+<!-- Slide 4 -->	
+		<div id="selection">
+			<ul id="nav">
+				<li><a id="podcastChart" href="#">Podcast</a></li>
+				<li><a id ="smartphoneChart" href="#">Smartphone</a></li>
+				<li><a id="streamingChart" href="#">Streaming</a></li>
+				<li><a id="radioChart" href="#">Terrestrial Radio</a></li>
+				<li><a id="all" href="#">All</a></li>
+			</ul>
+			<div id="listen_habits"></div>
+			<div id="xaxis">
+				<ul>
+					<li>21-23</li>
+					<li>24-26</li>
+					<li>27-29</li>
+					<li>30-32</li>
+					<li>33-35</li>
+					<li>36-38</li>
+					<li>39-41</li>
+					<li>42-45</li>
+					<li>46-48</li>
+					<li>49+</li>
+				</ul>
+			</div>
+		</div>
 <!-- Slide 5-->
-    <div>
-     <!--Anne-->
-      <h1>COMMUTING</h1>
-      <p>Sixty-five percent of public radio listeners consume shows while commuting to and from school or work. Over three quarters of that 65% listen to live broadcasts. The most common way that respondents discover their favorite shows is by listening to live broadcasts.
-</p>
-    </div>
+		<div>
+			<h1>COMMUTING</h1>
+			<p>Sixty-five percent of public radio listeners consume shows while commuting to and from school or work. Over three quarters of that 65% listen to live broadcasts. The most common way that respondents discover their favorite shows is by listening to live broadcasts.
+			</p>
+		</div>
 
 <!-- Slide 6 -->
-	<div>
-		<h1>BUT NEW TECHNOLOGIES ARE GAINING POPULARITY</h1>
-		<!--Anne-->
-		<p>Technology such as podcasting and streaming allows listeners to access content when and where they want. The ability to timeshift content and access digital media via mobile devices enables users to customize their listening experiences. 51 of 73 (70%) survey respondents who listen to public radio via terrestrial broadcast waves supplement that access with alternative listening methods (podcasts, smartphone applications, and online streaming). </p>
-	</div>
+		<div>
+			<h1>BUT NEW TECHNOLOGIES ARE GAINING POPULARITY</h1>
+			<p>Technology such as podcasting and streaming allows listeners to access content when and where they want. The ability to timeshift content and access digital media via mobile devices enables users to customize their listening experiences. 51 of 73 (70%) survey respondents who listen to public radio via terrestrial broadcast waves supplement that access with alternative listening methods (podcasts, smartphone applications, and online streaming). </p>
+		</div>
 		
 <!-- Slide 7 -->
-	<div>
-		<h1>SEARCHING FOR NEW CONTENT</h1>
-		<p>63 of the 96 public radio listeners (66%) actively search for new radio content. Of the 63 who search for content, 42 searched for a particular episode, 29 searched for a particular subject, and 14 searched for similar programs.</p>
-		<div id="search"></div>
-		<div id="xaxis">
-			<ul>
-			<li>21-23</li>
-			<li>24-26</li>
-			<li>27-29</li>
-			<li>30-32</li>
-			<li>33-35</li>
-			<li>36-38</li>
-			<li>39-41</li>
-			<li>42-45</li>
-			<li>46-48</li>
-			<li>49+</li>
-			</ul>
+		<div>
+			<h1>SEARCHING FOR NEW CONTENT</h1>
+			<p>63 of the 96 public radio listeners (66%) actively search for new radio content. Of the 63 who search for content, 42 searched for a particular episode, 29 searched for a particular subject, and 14 searched for similar programs.</p>
+			<div id="search"></div>
+			<div id="xaxis">
+				<ul>
+				<li>21-23</li>
+				<li>24-26</li>
+				<li>27-29</li>
+				<li>30-32</li>
+				<li>33-35</li>
+				<li>36-38</li>
+				<li>39-41</li>
+				<li>42-45</li>
+				<li>46-48</li>
+				<li>49+</li>
+				</ul>
+			</div>
 		</div>
-	</div>
 	
 <!-- Slide 8 -->
-	<div>
-		<h1>FAVORITE SHOWS</h1>
-		<p>74 of the 96 public radio listeners (77%) answered YES to the question DO YOU HAVE A FAVORITE RADIO SHOW? </p>
-		<div id="popshows"></div>
-	</div>
+		<div>
+			<h1>FAVORITE SHOWS</h1>
+			<p>74 of the 96 public radio listeners (77%) answered YES to the question DO YOU HAVE A FAVORITE RADIO SHOW? </p>
+			<div id="popshows"></div>
+		</div>
 
 <!-- Slide 9 -->
-	<div>
-		<h1>DISCOVERING NEW CONTENT</h1>
-		<p>Few respondents discovered their favorite shows through social media (3 of 74), iTunes (4 of 74), or NPR’s website (5 of 74). Twenty-seven of the 74 respondents with a favorite show learned of their favorite shows via “word of mouth," illustrating that personal networks play a significant role in introducing listeners to new content. However, 53 of the 74 respondents discovered their favorite shows when they heard the program on the radio.</p>
-	</div>	
+		<div>
+			<h1>DISCOVERING NEW CONTENT</h1>
+			<p>Few respondents discovered their favorite shows through social media (3 of 74), iTunes (4 of 74), or NPR’s website (5 of 74). Twenty-seven of the 74 respondents with a favorite show learned of their favorite shows via “word of mouth," illustrating that personal networks play a significant role in introducing listeners to new content. However, 53 of the 74 respondents discovered their favorite shows when they heard the program on the radio.</p>
+		</div>	
 	
 <!-- Slide 10	 -->
-	<div>
-		<h1>How do you discover new shows?</h1>
-		<div id="discover"></div>
-		<div id="xaxis">
-		<ul>
-			<li>21-23</li>
-			<li>24-26</li>
-			<li>27-29</li>
-			<li>30-32</li>
-			<li>33-35</li>
-			<li>36-38</li>
-			<li>39-41</li>
-			<li>42-45</li>
-			<li>46-48</li>
-			<li>49+</li>
-		</ul>
+		<div>
+			<h1>How do you discover new shows?</h1>
+			<div id="discover"></div>
+			<div id="xaxis">
+			<ul>
+				<li>21-23</li>
+				<li>24-26</li>
+				<li>27-29</li>
+				<li>30-32</li>
+				<li>33-35</li>
+				<li>36-38</li>
+				<li>39-41</li>
+				<li>42-45</li>
+				<li>46-48</li>
+				<li>49+</li>
+			</ul>
+			</div>
 		</div>
-	</div>
 	
 <!-- Slide 11 -->
-<div>
-	<div id= "engage_container">
-		<h1>USER ENGAGEMENT</h1>
-		<!--Anne-->
-		<p>Twenty-two of 96 public radio listeners have contributed to their favorite public radio shows. An average of 5 of those 22 contributed via either call ins, emails, or by contributing pieces. The most prevalent way that respondents contribute to shows is by “liking” the program on social media (14 of 22). It is possible that of the noted options (call ins, email, contributing pieces, and “liking” the program on social media), “liking” requires the least initiative — it is a relatively passive acknowledgement. </p>
+		<div>
+			<div id= "engage_container">
+				<h1>USER ENGAGEMENT</h1>
+				<!--Anne-->
+				<p>Twenty-two of 96 public radio listeners have contributed to their favorite public radio shows. An average of 5 of those 22 contributed via either call ins, emails, or by contributing pieces. The most prevalent way that respondents contribute to shows is by “liking” the program on social media (14 of 22). It is possible that of the noted options (call ins, email, contributing pieces, and “liking” the program on social media), “liking” requires the least initiative — it is a relatively passive acknowledgement. </p>
+				</div>
+			<div id="engagement1"></div>
+			<div id="xaxis">
+				<ul>
+					<li>21-23</li>
+					<li>24-26</li>
+					<li>27-29</li>
+					<li>30-32</li>
+					<li>33-35</li>
+					<li>36-38</li>
+					<li>39-41</li>
+					<li>42-45</li>
+					<li>46-48</li>
+					<li>49+</li>
+				</ul>
+			</div>
 		</div>
-	<div id="engagement1"></div>
-	<div id="xaxis">
-		<ul>
-			<li>21-23</li>
-			<li>24-26</li>
-			<li>27-29</li>
-			<li>30-32</li>
-			<li>33-35</li>
-			<li>36-38</li>
-			<li>39-41</li>
-			<li>42-45</li>
-			<li>46-48</li>
-			<li>49+</li>
-		</ul>
-	</div>
-</div>
 
 <!-- Slide 12 -->
-<div>
-	<h1>WE'RE GETTING OLDER</h1>
-	<p>Terrestrial broadcast radio is still the most common way of accessing content (73% of our survey participants listen to content as it airs). According to a 2010 study conducted by Jacobs Media, 35% of public radio listeners own a smartphone, and 90% use the Internet. As millennials and other younger generations age, their Internet habits will inform how they access public radio content. </p>
-	<p>The younger sample profiled in our survey demonstrates that listeners are using new technology to access radio content. Online and mobile access to content should be a high priority as producers plan for distribution. </p>
-</div>		
+		<div>
+			<h1>WE'RE GETTING OLDER</h1>
+			<p>Terrestrial broadcast radio is still the most common way of accessing content (73% of our survey participants listen to content as it airs). According to a 2010 study conducted by Jacobs Media, 35% of public radio listeners own a smartphone, and 90% use the Internet. As millennials and other younger generations age, their Internet habits will inform how they access public radio content.</p>
+			<p>The younger sample profiled in our survey demonstrates that listeners are using new technology to access radio content. Online and mobile access to content should be a high priority as producers plan for distribution. </p>
+		</div>		
 
 <!-- Navigation -->
-	  </div>
+	</div>
 	  <a href="#" class="prev"><img src="img/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
 	  <a href="#" class="next"><img src="img/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
-	</div>
+</div>
 	<img src="img/example-frame.png" width="739" height="341" alt="Example Frame" id="frame">
-	  </div>
+</div>
 
 </body>
 	 <script>
