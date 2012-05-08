@@ -43,7 +43,7 @@ window.onload= function () {
 	r.barchart(x,y, w, h, [podcast, [0,0,0,0,6,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#C5C3C9"]});
 	
 
-	// Labels
+	// Labels-- there's a bug in the new version of g.raphael. ".axis" no longer works. Try to mimic with html/css.
 	// var xlabel=["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older"];
 	// x_start, y_start, x_width, from, to, steps, orientation, labels, type, dashsize
 	// testchart.label([xlabel]);
