@@ -39,21 +39,23 @@ window.onload= function () {
     fout = function () {
         this.flag.animate({opacity: 0}, 300, function () {this.remove();});
 	};
+	
+	r.barchart(x,y, w, h, [podcast, [0,0,0,0,6,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#C5C3C9"]});
+	
 
 	// Labels
-	var xlabel=["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older"];
+	// var xlabel=["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older"];
 	// x_start, y_start, x_width, from, to, steps, orientation, labels, type, dashsize
-
-	r.barchart(x,y, w, h, [podcast]).attr({"fill":"#363942", "opacity": 1});
-	axisx=Raphael.g.axis(0,0,w,null,null,10,2,[xlabel], "|", 0,r);
-	axis.text.attr(txtattr);
+	// testchart.label([xlabel]);
+	// axisx=Raphael.g.axis(0,0,w,null,null,10,2,[xlabel], "|", 0,r);
+	// axisx.text.attr(txtattr);
 	
 	// Podcast Chart
 	$('a#podcastChart').click(function(){ 
 		// Barchart values are x, y, width, height
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			var chart1=r.barchart(x,y, w, h, [podcast]).attr({"fill":"#363942", "opacity": 0});
+			var chart1=r.barchart(x,y, w, h, [podcast,[0,0,0,0,6,0,0,0,0,0]],{stacked: true, colors: ["#363942", "#C5C3C9"]}).attr({"opacity": 0});
 			var chart1animate=chart1.animate({opacity: 1}, 1500 ).hover(fin,fout);
 			axisx;
 		}
@@ -68,7 +70,7 @@ window.onload= function () {
 	$('a#smartphoneChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			chart2=r.barchart(x,y,w,h, [smartphone]).attr({"fill":"#363942", "opacity": 0});
+			chart2=r.barchart(x,y,w,h, [smartphone, [0,0,0,0,9,0,0,0,0,0]],{stacked: true, colors: ["#363942", "#C5C3C9"]}).attr({"opacity": 0});
 			chart2animate= chart2.animate({opacity: 1}, 1500 ).hover(fin,fout);			
 		}
 		else {
@@ -81,14 +83,12 @@ window.onload= function () {
 	$('a#streamingChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			chart3= r.barchart(x,y,w,h, [streaming]).attr({"fill":"#363942", "opacity": 0,});
+			chart3= r.barchart(x,y,w,h, [streaming, [0,0,0,0,0,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#C5C3C9"]}).attr({"opacity": 0,});
 			chart3animate= chart3.animate({opacity: 1}, 1500 ).hover(fin,fout);
-			filler;
 		}
 		else {
 			chart3;
 			chart3animate;
-			filler;
 		}
 	});
 	
@@ -96,7 +96,7 @@ window.onload= function () {
 	$('a#radioChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			chart4=r.barchart(x,y,w,h, [radio]).attr({"fill":"#363942", "opacity": 0});
+			chart4=r.barchart(x,y,w,h, [radio, [0,0,3,0,0,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#C5C3C9"]}).attr({"opacity": 0});
 			chart4animate= chart4.animate({opacity: 1}, 1500 ).hover(fin,fout);
 		}
 		else {
@@ -240,7 +240,7 @@ engagepie.hover(function () {
 				<li><a id="all" href="#">All</a></li>
 			</ul>
 		<div id="listen_habits"></div>
-		<!-- <div id="xaxis">
+		<div id="xaxis">
 			<ul>
 				<li>21-23</li>
 				<li>24-26</li>
@@ -253,7 +253,7 @@ engagepie.hover(function () {
 				<li>46-48</li>
 				<li>49+</li>
 			</ul>
-		</div> -->
+		</div>
 	</div>
 <!-- Slide 4 -->
 	    <div>
