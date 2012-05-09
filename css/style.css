@@ -317,7 +317,8 @@ ul {
 }
 
 #number {
-	font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; 
+	font-family: 'Vibur', cursive;
+	font-size: 24px;
 	color: white;
 }
 
@@ -458,7 +459,7 @@ ul {
 */
 
 .slides_container {
-	width:800px;
+	width:750px;
 	overflow:hidden;
 	position:relative;
 	display:none;
