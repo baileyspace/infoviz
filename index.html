@@ -12,6 +12,7 @@
 <script src="js/libs/g.pie-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/libs/slides.jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/libs/slides.min.jquery.js" type="text/javascript" charset="utf-8"></script>
+<link href='http://fonts.googleapis.com/css?family=Vibur' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
 
@@ -48,7 +49,7 @@ window.onload= function () {
 	// create canvas
 	var r = Raphael("listen_habits");
 	// chart for initial display
-	r.barchart(x,y, w, h, [podcast, [0,0,0,0,6,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#C5C3C9"]});
+	r.barchart(x,y, w, h, [podcast, [0,0,0,0,6,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#FCFFF5"]});
 	
 	// Labels-- there's a bug in the new version of g.raphael. ".axis" no longer works. Try to mimic with html/css. Have tried all of the below.
 	// var xlabel=["21-23","24-26","27-29","30-32","33-35","36-38","39-41","42-45","46-48","49 and older"];
@@ -62,7 +63,7 @@ window.onload= function () {
 		// Barchart values are x, y, width, height
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			chart1= r.barchart(x,y, w, h, [podcast, [0,0,0,0,6,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#C5C3C9"]}).attr({"opacity": 0});
+			chart1= r.barchart(x,y, w, h, [podcast, [0,0,0,0,6,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#FCFFF5"]}).attr({"opacity": 0});
 			chart1animate=chart1.animate({opacity: 1}, 1500 ).hover(fin,fout);
 		}
 		else {
@@ -75,7 +76,7 @@ window.onload= function () {
 	$('a#smartphoneChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			chart2=r.barchart(x,y,w,h, [smartphone, [0,0,0,0,9,0,0,0,0,0]],{stacked: true, colors: ["#363942", "#C5C3C9"]}).attr({"opacity": 0});
+			chart2=r.barchart(x,y,w,h, [smartphone, [0,0,0,0,9,0,0,0,0,0]],{stacked: true, colors: ["#363942", "#FCFFF5"]}).attr({"opacity": 0});
 			chart2animate= chart2.animate({opacity: 1}, 1500 ).hover(fin,fout);			
 		}
 		else {
@@ -88,7 +89,7 @@ window.onload= function () {
 	$('a#streamingChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			chart3= r.barchart(x,y,w,h, [streaming, [0,0,0,0,0,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#C5C3C9"]}).attr({"opacity": 0,});
+			chart3= r.barchart(x,y,w,h, [streaming, [0,0,0,0,0,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#FCFFF5"]}).attr({"opacity": 0,});
 			chart3animate= chart3.animate({opacity: 1}, 1500 ).hover(fin,fout);
 		}
 		else {
@@ -101,7 +102,7 @@ window.onload= function () {
 	$('a#radioChart').click(function(){ 
 		if ($('#listen_habits > svg').children().length > 0) {
 			$('#listen_habits > svg').empty();
-			chart4=r.barchart(x,y,w,h, [radio, [0,0,3,0,0,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#C5C3C9"]}).attr({"opacity": 0});
+			chart4=r.barchart(x,y,w,h, [radio, [0,0,3,0,0,0,0,0,0,0]], {stacked: true, colors: ["#363942", "#FCFFF5"]}).attr({"opacity": 0});
 			chart4animate= chart4.animate({opacity: 1}, 1500 ).hover(fin,fout);
 		}
 		else {
@@ -111,17 +112,17 @@ window.onload= function () {
 	});
 	
 	// All chart- stacked chart of all data. Legend?? Also, needs different y axis.	
-	$('a#all').click(function(){ 
-		if ($('#listen_habits > svg').children().length > 0) {
-			$('#listen_habits > svg').empty();
-			chart6=r.barchart(x,y,w,h, [podcast,radio,streaming,smartphone],{stacked: true, colors: ["#FF8357", "#363942","#D8CAA8","#209193"]}).attr({"opacity":0});
-			chart6animate=chart6.animate({opacity: 1}, 1500 );
-		}
-		else {
-			chart6;
-			chart6animate;
-		}
-	});	
+	// $('a#all').click(function(){ 
+	// 	if ($('#listen_habits > svg').children().length > 0) {
+	// 		$('#listen_habits > svg').empty();
+	// 		chart6=r.barchart(x,y,w,h, [podcast,radio,streaming,smartphone],{stacked: true, colors: ["#FF8357", "#363942","#D8CAA8","#209193"]}).attr({"opacity":0});
+	// 		chart6animate=chart6.animate({opacity: 1}, 1500 );
+	// 	}
+	// 	else {
+	// 		chart6;
+	// 		chart6animate;
+	// 	}
+	// });	
 		
 // Popular Shows Pie
 	    var p = Raphael("popshows"),
@@ -213,23 +214,23 @@ engagepie.hover(function () {
 <!-- Slide 1 -->
 	<div>
 		<h1>LISTEN UP</h1>
-		<p>Public radio has a monthly listenership of 64.7 million people.</p>  
-		<p>Listenership peaks in the 55 to 64 age range.</p>
+		<p>Public radio has a monthly listenership of <span id="number">64.7 million</span> people.</p>  
+		<p>Listenership peaks in the <span id="number">55 to 64</span> age range.</p>
 		<br></br> 
 		<br></br>
 		<br></br>  
-		<p style="font-size: 12px">Sources: Arbitron, <a href="http://170millionamericans.org/numbers">http://170millionamericans.org/numbers</a></p>
+		<p style="font-size: 14px">Sources: Arbitron, <a href="http://170millionamericans.org/numbers">http://170millionamericans.org/numbers</a></p>
 	</div>
 <!-- Slide 2 -->
     	<div>
           <h1>BUT WHAT DOES IT MEAN TO LISTEN TO PUBLIC RADIO?</h1>
 	      <p>We conducted a survey to explore this question further.</p> 
-	      <p>Admittedly, perhaps because the survey was distributed through the I School and our Facebook networks, most of our respondents were between 26 and 38 years of age.</p> 
-	      <p>Also, 72% of our respondents were female.</p>
+	      <p>Admittedly, perhaps because the survey was distributed through the I School and our Facebook networks, most of our respondents were between <span id="number">26 and 38</span> years of age.</p> 
+	      <p>Also, <span id="number">72%</span> of our respondents were female.</p>
 		</div>
 	
 <!-- Slide 2 cont -->
-		<div>
+		<div id="breakdown">
 			<h1>Breakdown of Survey Participants By Age</h1>
 			<div id="users"></div>
 			<div id="xaxis">
@@ -243,7 +244,26 @@ engagepie.hover(function () {
 					<li>39-41</li>
 					<li>42-45</li>
 					<li>46-48</li>
-					<li>49+</li>
+					<li> 49+ </li>
+				</ul>
+			</div>
+			<div id="yaxis">
+				<ul>
+					<li>15</li>
+					<li>14</li>
+					<li>13</li>
+					<li>12</li>
+					<li>11</li>
+					<li>10</li>
+					<li>9</li>
+					<li>8</li>
+					<li>7</li>
+					<li>6</li>
+					<li>5</li>
+					<li>4</li>
+					<li>3</li>
+					<li>2</li>
+					<li>1</li>
 				</ul>
 			</div>
 		</div>
@@ -251,12 +271,12 @@ engagepie.hover(function () {
 <!-- Slide 3 -->
 		<div>
 			<h1>HOW DO YOU LISTEN TO PUBLIC RADIO?</h1>
-			<p>Of the 96 respondents who listen to public radio:</p> 
+			<p>Of the <span id=number>96</span> respondents who listen to public radio:</p> 
 			<ul id="habitlist">
-			<li>46 listen via podcasts</li>
-			<li>20 listen via smartphone applications</li>
-			<li>44 listen via online streaming</li>
-			<li>73 listen to live broadcasts</li>
+			<li><span id="number">46</span> listen via podcasts</li>
+			<li><span id="number">20</span> listen via smartphone applications</li>
+			<li><span id="number">44</span> listen via online streaming</li>
+			<li><span id="number">73</span> listen to live broadcasts</li>
 			</ul>
 			<p>The responses are not mutually exclusive. Broadcast radio still dominates as the chosen method for accessing radio content.</p>
 		</div>
@@ -267,7 +287,7 @@ engagepie.hover(function () {
 				<li><a id ="smartphoneChart" href="#">Smartphone</a></li>
 				<li><a id="streamingChart" href="#">Streaming</a></li>
 				<li><a id="radioChart" href="#">Terrestrial Radio</a></li>
-				<li><a id="all" href="#">All</a></li>
+				<!-- <li><a id="all" href="#">All</a></li> -->
 			</ul>
 			<div id="listen_habits"></div>
 			<div id="xaxis">
@@ -281,32 +301,59 @@ engagepie.hover(function () {
 					<li>39-41</li>
 					<li>42-45</li>
 					<li>46-48</li>
-					<li>49+</li>
+					<li> 49+ </li>
+				</ul>
+			</div>
+			<div id="yaxis">
+				<ul>
+					<li>15</li>
+					<li>14</li>
+					<li>13</li>
+					<li>12</li>
+					<li>11</li>
+					<li>10</li>
+					<li>9</li>
+					<li>8</li>
+					<li>7</li>
+					<li>6</li>
+					<li>5</li>
+					<li>4</li>
+					<li>3</li>
+					<li>2</li>
+					<li>1</li>
 				</ul>
 			</div>
 		</div>
 <!-- Slide 5-->
 		<div>
 			<h1>COMMUTING</h1>
-			<p>Sixty-five percent of public radio listeners consume shows while commuting to and from school or work. Over three quarters of that 65% listen to live broadcasts. The most common way that respondents discover their favorite shows is by listening to live broadcasts.
-			</p>
+			<p> <span id="number">Sixty-five percent</span> of public radio listeners consume shows while commuting to and from school or work.</p> 
+			<p>Over three quarters of that <span id="number">65%</span> listen to live broadcasts.</p>
+			<p>The most common way that respondents discover their favorite shows is by listening to live broadcasts.</p>
 		</div>
 
 <!-- Slide 6 -->
 		<div>
 			<h1>BUT NEW TECHNOLOGIES ARE GAINING POPULARITY</h1>
-			<p>Technology such as podcasting and streaming allows listeners to access content when and where they want. The ability to timeshift content and access digital media via mobile devices enables users to customize their listening experiences. 51 of 73 (70%) survey respondents who listen to public radio via terrestrial broadcast waves supplement that access with alternative listening methods (podcasts, smartphone applications, and online streaming). </p>
+			<p>Technology such as podcasting and streaming allows listeners to access content when and where they want.</p> 
+			<p>The ability to timeshift content and access digital media via mobile devices enables users to customize their listening experiences. </p>
+			<p>	<span id="number">51 of the 73</span> survey respondents who listen to public radio via terrestrial broadcast waves <span id="number">(70%)</span> supplement their access with alternative listening methods (podcasts, smartphone applications, and online streaming). </p>
 		</div>
 		
 <!-- Slide 7 -->
 		<div>
 			<h1>SEARCHING FOR NEW CONTENT</h1>
-			<p>63 of the 96 public radio listeners (66%) actively search for new radio content. Of the 63 who search for content, 42 searched for a particular episode, 29 searched for a particular subject, and 14 searched for similar programs.</p>
+			<p><span id="number">63 of the 96</span> public radio listeners we surveyed <span id="number">(66%)</span> actively search for new radio content. Of the <span id="number">63</span> who search for content:</p>
+				<ul id="habitlist">
+				<li><span id="number">42</span> searched for a particular episode</li>
+				<li><span id="number">29</span> searched for a particular subject</li>
+				<li><span id="number">14</span> searched for similar programs</li>
+				</ul>
 		</div>
 		
 <!-- Slide 7 Cont -->
 
-		<div>
+		<div id="howdoyousearch">
 			<h1>How do you search for content?</h1>	
 			<div id="search"></div>
 			<div id="xaxis">
@@ -320,7 +367,19 @@ engagepie.hover(function () {
 				<li>39-41</li>
 				<li>42-45</li>
 				<li>46-48</li>
-				<li>49+</li>
+				<li> 49+ </li>
+				</ul>
+			</div>
+			<div id="howyousearchyaxis">
+				<ul>
+					<li>40</li>
+					<li>35</li>
+					<li>30</li>
+					<li>25</li>
+					<li>20</li>
+					<li>15</li>
+					<li>10</li>
+					<li>5</li>
 				</ul>
 			</div>
 		</div>
@@ -329,7 +388,7 @@ engagepie.hover(function () {
 		<div>
 			<div id="leftpopshows">
 				<h1>FAVORITE SHOWS</h1>
-				<p>74 of the 96 public radio listeners (77%) answered YES to the question DO YOU HAVE A FAVORITE RADIO SHOW? </p>
+				<p><span id="number">74 of the 96</span> public radio listeners <span id="number">(77%)</span> answered <b>YES</b> to the question <b>DO YOU HAVE A FAVORITE RADIO SHOW?</b> </p>
 			</div>
 			<div id="popshows"></div>
 		</div>
@@ -337,11 +396,13 @@ engagepie.hover(function () {
 <!-- Slide 9 -->
 		<div>
 			<h1>DISCOVERING NEW CONTENT</h1>
-			<p>Few respondents discovered their favorite shows through social media (3 of 74), iTunes (4 of 74), or NPR’s website (5 of 74). Twenty-seven of the 74 respondents with a favorite show learned of their favorite shows via “word of mouth," illustrating that personal networks play a significant role in introducing listeners to new content. However, 53 of the 74 respondents discovered their favorite shows when they heard the program on the radio.</p>
+			<p>Few respondents discovered their favorite shows through social media (3 of 74), iTunes (4 of 74), or NPR’s website (5 of 74). </p>
+			<p>Twenty-seven of the 74 respondents with a favorite show learned of their favorite shows via “word of mouth," illustrating that personal networks play a significant role in introducing listeners to new content.</p> 
+			<p>However, 53 of the 74 respondents discovered their favorite shows when they heard the program on the radio.</p>
 		</div>	
 	
 <!-- Slide 10	 -->
-		<div>
+		<div id="discovershows">
 			<h1>How do you discover new shows?</h1>
 			<div id="discover"></div>
 			<div id="xaxis">
@@ -355,8 +416,24 @@ engagepie.hover(function () {
 				<li>39-41</li>
 				<li>42-45</li>
 				<li>46-48</li>
-				<li>49+</li>
+				<li> 49+ </li>
 			</ul>
+			</div>
+			<div id="discoveryaxis">
+				<ul>
+					<li>60</li>
+					<li>55</li>
+					<li>50</li>
+					<li>45</li>
+					<li>40</li>
+					<li>35</li>
+					<li>30</li>
+					<li>25</li>
+					<li>20</li>
+					<li>15</li>
+					<li>10</li>
+					<li>5</li>
+				</ul>
 			</div>
 		</div>
 	

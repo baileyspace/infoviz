@@ -241,12 +241,11 @@ p {
 }
 
 li, #nav li a{
-	display: inline;
-	margin: 0;
-	padding: 0;
-	color: #339;
-	font-weight: bold;
-	width: 50px;
+       display: inline;
+       margin: 0;
+       padding: .5px;
+       color: #0494CC;
+       width: 300px;
 }
 
 h1 {
@@ -274,8 +273,8 @@ ul {
 #xaxis {
 	position: absolute;
 	z-index:2;
-	left:98px;
-	top:355px;
+	left:136px;
+	top:365px;
 }
 
 #xaxis ul{
@@ -288,28 +287,96 @@ ul {
 	padding-right: 3px;
 	
 }
+#yaxis {
+	background-color: #FCFFF5;
+	border-radius: 35px;
+	padding-left: 10px;
+	position:absolute;
+	width: 510px;
+	height: 355px;
+	font-size: 14px;
+	z-index:0;
+	left:111px;
+	top:45px;	
+}
+
+#searchyaxis {
+	position: absolute;
+	top: 57px;
+	left: 166px;
+	height: 200px;
+}
+
+#searchyaxis li{
+	display: block;
+	padding-bottom: 15px;
+}
+
+#yaxis li{
+	display: block;
+}
+
+#number {
+	font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; 
+	color: white;
+}
+
+#discovershows h1{
+	position: absolute;
+	top: -29px;
+	left: 98px;
+}
+
+#discoveryaxis {
+	position: absolute;
+	top: 42px;
+	left: 98px;
+}
+
+#discoveryaxis li{
+	display: block;
+	padding-bottom: 3x;
+}
+
+#breakdown h1 {
+	position: absolute;
+	top: -29px;
+	left: 29px;
+}
+
+#howdoyousearch h1 {
+	position: absolute;
+	top: -29px;
+	left: 133px;	
+}
+
+#howyousearchyaxis {
+	position: absolute;
+	top: 50px;
+	left: 123px;
+}
+
+#howyousearchyaxis li {
+	display: block;
+	padding-bottom: 15px;
+}
 
 #habitlist ul{
 	text-decoration:none;	
 }
 	
-#habitlist li{
+#habitlist li, #legendfavorites li, #legendengagement li{
 	display:block;
 }
 
 #listen_habits, #search, #discover, #users{
 	position: absolute;
 	z-index:1;
-	left:90px;
-	top:35px;
+	left:127px;
+	top:52px;
 }
 
-#yaxis {
-	position:absolute;
-	z-index:3;
-	left:98px;
-	top:355px;	
-}
+
 
 /*Pie charts--creates split screen effect
 */
@@ -334,7 +401,9 @@ ul {
 /*Listening Habits Slide
 */
 #nav {
+	position: absolute;
 	padding: 0 0 0 190px;
+	z-index: 2;
 }
 
 #nav a:hover{
